@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+  <title>Quartz Community</title>
+
+  <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
+
+  <link rel="canonical" href="http://www.quartz-scheduler.org/community/contribute.html">
+  <link rel="alternate" type="application/rss+xml" title="Quartz Enterprize Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
+
+
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Global CSS -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/spacelab/bootstrap.min.css">
+
+
+<!--
+  <link rel="stylesheet" href="/plugins/highlight/styles/idea.css">
+  <script src="/plugins/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+-->
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.css"></script>
+
+  <link rel="stylesheet" href="/css/main.css">
+
+<!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', prettyPrint)</script>
+-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+
+  <body>
+
+    
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="site-title" href="/"><img src="/images/logo-quartz-scheduler.png"/></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li id="site_mnu_about"><a href="/overview/"><i class="fa fa-info-circle"></i> About</a></li>
+            <li id="site_mnu_docs"><a href="/documentation/"><i class="fa fa-book"></i> Docs</a></li>
+            <li id="site_mnu_download"><a href="/downloads/"><i class="fa fa-download"></i> Download</a></li>
+            <li id="site_mnu_community" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Community <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">We Love Contributors</li>
+                <li><a href="/community/"><i class="fa fa-code"></i> Contributing</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Forums</li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler-dev" target="_blank"><i class="fa fa-commenting"></i> Developers' Forum</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Source Code</li>
+                <li><a href="/community/source-code.html"><i class="fa fa-code-fork"></i> SVN</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Bug Tracking</li>
+                <li><a href="http://jira.terracotta.org/jira/browse/QTZ"><i class="fa fa-bug"></i> Jira</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+<!--            <li id="site_mnu_events"><a href="/events"><i class="fa fa-calendar"></i> News & Events</a></li> -->
+            <li><a href="http://blog.terracotta.org"><i class="fa fa-rss-square"></i>  Blog</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<br/>
+<br/>
+<br/>
+
+
+    <div class="container-fluid">
+      <div id="contentTitle">
+        <h1>Quartz Community</h1>
+      </div>
+      <div>
+        <br/>
+
+<div class="container-fluid">
+
+  <div class="row row-offcanvas row-offcanvas-left">
+
+    <!-- sidebar -->
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <ul class="nav">
+          <li id="site_mnu_community_overview" class="submenu"><a href="/community/">Community Overview</a></li>
+          <li id="site_mnu_community_contribute" class="submenu"><a href="/community/contribute.html">Contributing</a></li>
+          <li id="site_mnu_community_team" class="submenu"><a href="/community/team.html">Team</a></li>
+          <li id="site_mnu_community_code" class="submenu"><a href="/community/source-code.html">Source Code</a></li>
+        </ul>
+    </div>
+
+    <!-- main area -->
+    <div class="col-xs-12 col-sm-9">
+      <header class="post-header">
+         
+      </header>
+      <article class="post-content">
+        <h1 id="contribute">Contribute</h1>
+
+<h2 id="welcome-aboard">Welcome aboard!</h2>
+
+<p>Contributing doesn’t always mean having code repository commit access. In fact, some of the best open source contributors never have commit access. In order for Quartz to be successful, we rely on help in many areas other than writing software. These include:</p>
+
+<ul>
+  <li>Submitting bug reports (with patches!)</li>
+  <li>Writing documentation (esp. based on common issues in the forums)</li>
+  <li>Helping out in the forums</li>
+</ul>
+
+<h2 id="recognition">Recognition</h2>
+
+<p>We recognize people who help out in any way by adding their name as a contributor to the <a href="team.html">development team</a>. Every person listed there has helped in some way, big or small, to make Quartz what it is today. Without them, the project certainly would not be the same. With that said, we know that some people are especially interested in writing software…</p>
+
+<p>Authorship record of code modules and/or documentation is also maintained to give credit where credit is due.</p>
+
+<h2 id="submitting-contributions">Submitting Contributions</h2>
+
+<p>Have you built a great new feature for Quartz? Drop us a note on the developer’s mailing list or file a feature enhancement request in our issue tracker and let us know about it. We gladly, and regularly accept contributions. Contributor’s are given credit for their work, though they must be willing (for licensing purposes) to release copyright of the work. A “<a href="https://confluence.terracotta.org/download/attachments/27918462/Terracotta%20Individual%20Contributor%20Agreement%20v4.docx">Contributor Agreement</a>” document must be filled-out and sent to Terracotta - indicating that you assign the copyright of the work to the Quartz project. This document only needs to be filled out once per contributor - not once for each contribution.</p>
+
+<h2 id="becoming-a-quartz-developer">Becoming a Quartz Developer</h2>
+
+<p>Becoming a core developer fo</p>
+
+      </article>
+    </div>
+
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+    <br/>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Related Projects:<br/>
+        <a href="http://www.terracotta.org"><img src="/images/Terracotta_Logo_sm.png" style="max-height: 20px;"></a><br/>
+        <a href="http://www.ehcache.org"><img src="/images/ehcache.png" style="max-height: 44px;"></a>
+
+        <!--
+        <ul class="contact-list">
+          <li>Quartz Enterprize Job Scheduler</li>
+          <li><a href="mailto:tc-oss@softwareag.com">tc-oss@softwareag.com</a></li>
+        </ul>
+      -->
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/quartz-scheduler">
+              <i class="fa fa-github"></i> GitHub
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/terracottatech">
+              <i class="fa fa-twitter"></i> Twitter
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.facebook.com/Terracotta">
+              <i class="fa fa-facebook"></i> Facebook
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.linkedin.com/company/terracotta">
+              <i class="fa fa-linkedin"></i> LinkedIn
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+    <div class="footer-col  footer-col-3">
+      <a href="/downloads/"><i class="fa fa-download"></i> Download Now</a>
+      <br/>
+      <a href="/documentation/"><i class="fa fa-book"></i> Documentation</a>
+      <br/>
+      <a href="/community/"><i class="fa fa-users"></i> Join the Community</a>
+    </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <hr/>
+        <em class="copyleft">Quartz Job Scheduler is Open Source and freely available under the Apache 2 License</em>
+        <br/>
+        <em class="copyright">&copy; Terracotta, Inc., a wholly-owned subsidiary of Software AG USA, Inc. All rights reserved.</em>
+    </div>
+  </div>
+
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+
+<!--  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"/> -->
+
+<script type="text/javascript">
+        $('#site_mnu_community').addClass("active");
+        $('#site_mnu_community_contribute').addClass("active");
+</script>
+
+
+  </body>
+
+</html>
