@@ -54,6 +54,18 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-131151-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+  
 </head>
 
 
@@ -225,10 +237,10 @@ Reference</a>.</p>
 <p>The scheduler created by this configuration has the following characteristics:</p>
 
 <ul>
-  <li><code>org.quartz.scheduler.instanceName</code> - This scheduler’s name will be “MyScheduler”.</li>
-  <li><code>org.quartz.threadPool.threadCount</code> - There are 3 threads in the thread pool, which means
+  <li><code class="highlighter-rouge">org.quartz.scheduler.instanceName</code> - This scheduler’s name will be “MyScheduler”.</li>
+  <li><code class="highlighter-rouge">org.quartz.threadPool.threadCount</code> - There are 3 threads in the thread pool, which means
 that a maximum of 3 jobs can be run simultaneously.</li>
-  <li><code>org.quartz.jobStore.class</code> - All of Quartz’s data, such as details of jobs and triggers,
+  <li><code class="highlighter-rouge">org.quartz.jobStore.class</code> - All of Quartz’s data, such as details of jobs and triggers,
 is held in memory (rather than in a database).</li>
 </ul>
 
@@ -272,7 +284,7 @@ will not terminate until you call scheduler.shutdown(), because there will be ac
 <p>If you have not set up logging, all logs will be sent to the console and your output will
 look something like this:</p>
 
-<pre><code>[INFO] 21 Jan 08:46:27.857 AM main [org.quartz.core.QuartzScheduler]
+<div class="highlighter-rouge"><pre class="highlight"><code>[INFO] 21 Jan 08:46:27.857 AM main [org.quartz.core.QuartzScheduler]
 Quartz Scheduler v.2.0.0-SNAPSHOT created.
 
 [INFO] 21 Jan 08:46:27.859 AM main [org.quartz.simpl.RAMJobStore]
@@ -305,8 +317,9 @@ Scheduler Scheduler_$_NON_CLUSTERED paused.
 [INFO] 21 Jan 08:46:27.867 AM main [org.quartz.core.QuartzScheduler]
 Scheduler Scheduler_$_NON_CLUSTERED shutdown complete.
 </code></pre>
+</div>
 
-<p>To do something interesting, you need code between the <code>start()</code> and <code>shutdown()</code> calls.</p>
+<p>To do something interesting, you need code between the <code class="highlighter-rouge">start()</code> and <code class="highlighter-rouge">shutdown()</code> calls.</p>
 
 <pre class="prettyprint highlight"><code class="language-java" data-lang="java">  // define the job and tie it to our HelloJob class
   JobDetail job = newJob(HelloJob.class)
@@ -327,8 +340,8 @@ Scheduler Scheduler_$_NON_CLUSTERED shutdown complete.
 </code></pre>
 
 <p>(you will also need to allow some time for the job to be triggered and executed before
-calling <code>shutdown()</code> - for a simple example such as this, you might just want to add a
-<code>Thread.sleep(60000)</code> call).</p>
+calling <code class="highlighter-rouge">shutdown()</code> - for a simple example such as this, you might just want to add a
+<code class="highlighter-rouge">Thread.sleep(60000)</code> call).</p>
 
 <p>Now go have some fun!</p>
 
@@ -428,7 +441,7 @@ calling <code>shutdown()</code> - for a simple example such as this, you might j
 <!--  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"/> -->
 
 <script type="text/javascript">
-        $('#site_mnu_about').addClass("active");
+        $('#').addClass("active");
         $('#site_mnu_about_quick_start').addClass("active");
 </script>
 

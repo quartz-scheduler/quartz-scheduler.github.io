@@ -10,7 +10,7 @@
   <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
-  <title>2.x Documentation</title>
+  <title>Tutorial 11</title>
 
   <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
 
@@ -54,6 +54,18 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-131151-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+  
 </head>
 
 
@@ -112,7 +124,7 @@
 
     <div class="container-fluid">
       <div id="contentTitle">
-        <h1>2.x Documentation</h1>
+        <h1>Tutorial 11</h1>
       </div>
       <div>
         <br/>
@@ -138,7 +150,10 @@
     <!-- main area -->
     <div class="col-xs-12 col-sm-9">
       <header class="post-header">
-         
+        
+        <h1 class="post-title">Quartz Tutorials </h1>
+        <hr/>
+        
       </header>
       <article class="post-content">
         <div class="secNavPanel">
@@ -179,8 +194,8 @@
 <p>Clustering currently works with the JDBC-Jobstore (JobStoreTX or JobStoreCMT) and the TerracottaJobStore.
 Features include load-balancing and job fail-over (if the JobDetail’s “request recovery” flag is set to true).</p>
 
-<h4 id="clustering-with-jobstoretx-or-jobstorecmt">Clustering With JobStoreTX or JobStoreCMT</h4>
-<p>Enable clustering by setting the “org.quartz.jobStore.isClustered” property to “true”. Each instance in the
+<p>####Clustering With JobStoreTX or JobStoreCMT
+Enable clustering by setting the “org.quartz.jobStore.isClustered” property to “true”. Each instance in the
 cluster should use the same copy of the quartz.properties file. Exceptions of this would be to use properties files that
 are identical, with the following allowable exceptions: Different thread pool size, and different value for the
 “org.quartz.scheduler.instanceId” property. Each node in the cluster MUST have a unique instanceId, which is easily done
@@ -201,8 +216,8 @@ node will run the job, etc.    It won’t necessarily be the same node each time
 node runs it.  The load balancing mechanism is near-random for busy schedulers (lots of triggers) but favors the
 same node that just was just active for non-busy (e.g. one or two triggers) schedulers.</p>
 
-<h4 id="clustering-with-terracottajobstore">Clustering With TerracottaJobStore</h4>
-<p>Simply configure the scheduler to use TerracottaJobStore (covered in
+<p>####Clustering With TerracottaJobStore
+Simply configure the scheduler to use TerracottaJobStore (covered in
 <a href="/documentation/quartz-2.x/tutorials/tutorial-lesson-09.html" title="Tutorial Lesson 9">Lesson 9: JobStores</a>), and your scheduler will be all
 set for clustering.</p>
 
@@ -324,7 +339,7 @@ your code that uses the scheduler within a SessionBean that uses container manag
 <!--  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"/> -->
 
 <script type="text/javascript">
-        $('#site_mnu_docs').addClass("active");
+        $('#').addClass("active");
         $('#site_mnu_docs_tutorials').addClass("active");
 </script>
 

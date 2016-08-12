@@ -10,7 +10,7 @@
   <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
-  <title>2.1.x Documentation</title>
+  <title>Migration Guide</title>
 
   <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
 
@@ -54,6 +54,18 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-131151-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+  
 </head>
 
 
@@ -112,7 +124,7 @@
 
     <div class="container-fluid">
       <div id="contentTitle">
-        <h1>2.1.x Documentation</h1>
+        <h1>Migration Guide</h1>
       </div>
       <div>
         <br/>
@@ -138,7 +150,10 @@
     <!-- main area -->
     <div class="col-xs-12 col-sm-9">
       <header class="post-header">
-         
+        
+        <h1 class="post-title">Quartz 1.8 to 2.1 Migration Guide </h1>
+        <hr/>
+        
       </header>
       <article class="post-content">
         <h1 id="quartz-1.8.x-to-quartz-2.1-migration-guide">Quartz 1.8.x to Quartz 2.1 Migration Guide</h1><div id="toc-container">
@@ -675,7 +690,7 @@ create index idx_qrtz_ft_tg on qrtz_fired_triggers(SCHED_NAME,TRIGGER_GROUP);
 <!--  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"/> -->
 
 <script type="text/javascript">
-        $('#site_mnu_docs').addClass("active");
+        $('#').addClass("active");
         $('#site_mnu_migration_guide').addClass("active");
 </script>
 
