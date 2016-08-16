@@ -158,12 +158,35 @@
       <article class="post-content">
         <div class="secNavPanel">
           <a href="./" title="Go to Tutorial Table of Contents">Table of Contents</a> |
-          <a href="/documentation/quartz-2.x/tutorials/tutorial-lesson-02.html" title="Go to Lesson 2">&lsaquo;&nbsp;Lesson 2</a> |
-          <a href="/documentation/quartz-2.x/tutorials/tutorial-lesson-04.html" title="Go to Lesson 4">Lesson 4&nbsp;&rsaquo;</a>
+          <a href="/documentation/quartz-2.x/tutorials/tutorial-lesson-02.html" title="Go to Lesson 2">‹ Lesson 2</a> |
+          <a href="/documentation/quartz-2.x/tutorials/tutorial-lesson-04.html" title="Go to Lesson 4">Lesson 4 ›</a>
 </div>
-<p># Tutorial</p>
+<h1 id="tutorial">Tutorial</h1><div id="toc-container">
+   <table class="toc" id="toc">
+      <tbody>
+         <tr>
+            <td>
+               <ul>
+                  <li class="toc_level-1 toc_section-1">
+                     <a href="#tutorial">
+                        <span class="toctext">Tutorial</span>
+                     </a>
+                     <ul>
+                        <li class="toc_level-2 toc_section-2">
+                           <a href="#lesson-3:-more-about-jobs-and-job-details">
+                              <span class="toctext">Lesson 3: More About Jobs and Job Details</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
 
-<h2 id="lesson-3-more-about-jobs-and-job-details">Lesson 3: More About Jobs and Job Details</h2>
+<h2 id="lesson-3:-more-about-jobs-and-job-details">Lesson 3: More About Jobs and Job Details</h2>
 
 <p>As you saw in Lesson 2, Jobs are rather easy to implement, having just a single ‘execute’ method in the interface.
 There are just a few more things that you need to understand about the nature of jobs, about the execute(..) method of
@@ -176,14 +199,17 @@ This is done via the JobDetail class, which was mentioned briefly in the previou
 <p>JobDetail instances are built using the JobBuilder class.  You will typically want to use a static import of
 all of its methods, in order to have the DSL-feel within your code.</p>
 
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
+<pre class="prettyprint highlight">
+   <code class="language-java" data-lang="java">
 import static org.quartz.JobBuilder.*;
-</code></pre>
+</code>
+</pre>
 
 <p>Let’s take a moment now to discuss a bit about the ‘nature’ of Jobs and the life-cycle of job instances within
 Quartz. First lets take a look back at some of that snippet of code we saw in Lesson 1:</p>
 
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
+<pre class="prettyprint highlight">
+   <code class="language-java" data-lang="java">
   // define the job and tie it to our HelloJob class
   JobDetail job = newJob(HelloJob.class)
       .withIdentity("myJob", "group1") // name "myJob", group "group1"
@@ -200,11 +226,13 @@ Quartz. First lets take a look back at some of that snippet of code we saw in Le
 
   // Tell quartz to schedule the job using our trigger
   sched.scheduleJob(job, trigger);
-</code></pre>
+</code>
+</pre>
 
 <p>Now consider the job class “HelloJob” defined as such:</p>
 
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
+<pre class="prettyprint highlight">
+   <code class="language-java" data-lang="java">
   public class HelloJob implements Job {
 
     public HelloJob() {
@@ -216,7 +244,8 @@ Quartz. First lets take a look back at some of that snippet of code we saw in Le
       System.err.println("Hello!  HelloJob is executing.");
     }
   }
-</code></pre>
+</code>
+</pre>
 
 <p>Notice that we give the scheduler a JobDetail instance, and that it knows the type of job to be executed by simply
 providing the job’s class as we build the JobDetail. Each (and every) time the scheduler executes the job, it creates a
@@ -239,18 +268,21 @@ convenience methods for storing and retrieving data of primitive types.</p>
 <p>Here’s some quick snippets of putting data into the JobDataMap while defining/building the JobDetail,  prior to
 adding the job to the scheduler:</p>
 
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
+<pre class="prettyprint highlight">
+   <code class="language-java" data-lang="java">
   // define the job and tie it to our DumbJob class
   JobDetail job = newJob(DumbJob.class)
       .withIdentity("myJob", "group1") // name "myJob", group "group1"
       .usingJobData("jobSays", "Hello World!")
       .usingJobData("myFloatValue", 3.141f)
       .build();
-</code></pre>
+</code>
+</pre>
 
 <p>Here’s a quick example of getting data from the JobDataMap during the job’s execution:</p>
 
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
+<pre class="prettyprint highlight">
+   <code class="language-java" data-lang="java">
 public class DumbJob implements Job {
 
     public DumbJob() {
@@ -269,7 +301,8 @@ public class DumbJob implements Job {
       System.err.println("Instance " + key + " of DumbJob says: " + jobSays + ", and val is: " + myFloatValue);
     }
   }
-</code></pre>
+</code>
+</pre>
 
 <p>If you use a persistent JobStore (discussed in the JobStore section of this tutorial) you should use some care in
 deciding what you place in the JobDataMap, because the object in it will be serialized, and they therefore become prone
@@ -296,7 +329,8 @@ overriding any same-named values in the former.</p>
 <p>Here’s a quick example of getting data from the JobExecutionContext’s merged JobDataMap during the job’s
 execution:</p>
 
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
+<pre class="prettyprint highlight">
+   <code class="language-java" data-lang="java">
 public class DumbJob implements Job {
 
     public DumbJob() {
@@ -317,12 +351,14 @@ public class DumbJob implements Job {
       System.err.println("Instance " + key + " of DumbJob says: " + jobSays + ", and val is: " + myFloatValue);
     }
   }
-</code></pre>
+</code>
+</pre>
 
 <p>Or if you wish to rely on the JobFactory “injecting” the data map values onto your class, it might look like this
 instead:</p>
 
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
+<pre class="prettyprint highlight">
+   <code class="language-java" data-lang="java">
   public class DumbJob implements Job {
 
 
@@ -358,14 +394,15 @@ instead:</p>
     }
 
   }
-</code></pre>
+</code>
+</pre>
 
 <p>You’ll notice that the overall code of the class is longer, but the code in the execute() method is cleaner. One
 could also argue that although the code is longer, that it actually took less coding, if the programmer’s IDE was
 used to auto-generate the setter methods, rather than having to hand-code the individual calls to retrieve the
 values from the JobDataMap.   The choice is yours.</p>
 
-<h3 id="a-nametutoriallesson3-jobinstancesajob-instances"><a name="TutorialLesson3-JobInstances"></a>Job “Instances”</h3>
+<h3 id="a-nametutoriallesson3-jobinstancesajob-instances"><a name="TutorialLesson3-JobInstances" id="TutorialLesson3-JobInstances"></a>Job “Instances”</h3>
 
 <p>Many users spend time being confused about what exactly constitutes a “job instance”. We’ll try to clear
 that up here and in the section below about job state and concurrency.</p>
