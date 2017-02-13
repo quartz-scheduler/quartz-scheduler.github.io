@@ -15,7 +15,7 @@
   <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
 
   <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/quartz-2.1.x/migration-guide.html">
-  <link rel="alternate" type="application/rss+xml" title="Quartz Enterprize Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Quartz Enterprise Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
 
 
 
@@ -274,7 +274,7 @@ trg.getJobKey().getName();
 JobDetail myJob = sched.getJobDetail(jobKey("myJobName", "myGroup"));
 </pre>
 
-<h4 id="constructing-jobs-and-triggers-nbsp-the-new-preferred-way---see-next-section-for-easier-migration">Constructing Jobs and Triggers   (the new, preferred way - see next section for easier migration)</h4>
+<h4 id="constructing-jobs-and-triggers--the-new-preferred-way---see-next-section-for-easier-migration">Constructing Jobs and Triggers   (the new, preferred way - see next section for easier migration)</h4>
 
 <p>A new builder-based API provides a Domain Specific Language (DSL) for constructing job and trigger definitions.
 Usage of static imports makes your code nice and clean when using the new DSL.  Aside from being a less cumbersome API,
@@ -328,7 +328,7 @@ Trigger trg = newTrigger()
     .build();
 </pre>
 
-<h4 id="constructing-jobs-and-triggers-nbsp-the-easy-but-not-recommended-way---see-above-for-preferred">Constructing Jobs and Triggers   (the easy but not recommended way - see above for preferred)</h4>
+<h4 id="constructing-jobs-and-triggers--the-easy-but-not-recommended-way---see-above-for-preferred">Constructing Jobs and Triggers   (the easy but not recommended way - see above for preferred)</h4>
 
 <p>If you want to get going quicker, without re-writing code to use the new builder/DSL API, you can make some quick
 changes to existing code to make the compiler happy.   Trigger and JobDetail are now interfaces, but implementations
@@ -619,7 +619,7 @@ create index idx_qrtz_ft_tg on qrtz_fired_triggers(SCHED_NAME,TRIGGER_GROUP);
 
         <!--
         <ul class="contact-list">
-          <li>Quartz Enterprize Job Scheduler</li>
+          <li>Quartz Enterprise Job Scheduler</li>
           <li><a href="mailto:tc-oss@softwareag.com">tc-oss@softwareag.com</a></li>
         </ul>
       -->
