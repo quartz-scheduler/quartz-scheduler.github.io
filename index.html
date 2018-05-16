@@ -192,6 +192,19 @@
       &lt;version&gt;2.2.1&lt;/version&gt;
   &lt;/dependency&gt;   </code></pre>
 
+      <p>And for Gradle:</p>
+
+      <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">
+  project(':quartz-project') {
+    repositories { 
+      mavenCentral()
+    } 
+    dependencies {
+      compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.0'
+    }
+  }
+      </code></pre>
+
       <h2>Using Quartz</h2>
 
       <h3>Instantiate and Start a Scheduler</h3>
