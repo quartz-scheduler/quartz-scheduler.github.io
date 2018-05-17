@@ -10,11 +10,11 @@
   <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
-  <title>Tutorial 11</title>
+  <title>Tutorial 13</title>
 
   <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
 
-  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-11.html">
+  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-13.html">
   <link rel="alternate" type="application/rss+xml" title="Quartz Enterprise Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
 
 
@@ -126,7 +126,7 @@
 
     <div class="container-fluid">
       <div id="contentTitle">
-        <h1>Tutorial 11</h1>
+        <h1>Tutorial 13</h1>
       </div>
       <div>
         <br/>
@@ -160,104 +160,34 @@
       <article class="post-content">
         <div class="secNavPanel">
           <a href="./" title="Go to Tutorial Table of Contents">Table of Contents</a> |
-          <a href="/documentation/quartz-2.2.x/tutorials/tutorial-lesson-10.html" title="Go to Lesson 10">&lsaquo;&nbsp;Lesson 10</a> |
-          <a href="/documentation/quartz-2.2.x/tutorials/tutorial-lesson-12.html" title="Go to Lesson 12">Lesson 12&nbsp;&rsaquo;</a>
+          <a href="/documentation/quartz-2.2.x/tutorials/tutorial-lesson-11.html" title="Go to Lesson 2">&lsaquo;&nbsp;Lesson 12</a>
 </div>
 
-<h2 id="lesson-11-job-factories">Lesson 11: Job Factories</h2>
+<h2 id="lesson-13-miscellaneous-features-of-quartz">Lesson 13: Miscellaneous Features of Quartz</h2>
 
-<h3 id="TutorialLesson11-JobFactories">Job Factories</h3>
+<h3 id="TutorialLesson13-PlugIns">Plug-Ins</h3>
 
-<p>A Job Factory is invoked prior to job creation to construct an implementation of the Job interface. The default implementation is the SimpleJobFactory that will populate your Job implementation data members if you have declared setters that correlate to the keys in the JobDataMap</p>
+<p>Quartz provides an interface (org.quartz.spi.SchedulerPlugin) for plugging-in additional functionality.</p>
 
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
-  JobDetail job = newJob(MyJob.class)
-      .withIdentity("myJob", "group1")
-      .usingJobData("myString", "Hello World!")
-      .usingJobData("myInt", 123)
-      .build();
+<p>Plugins that ship with Quartz to provide various utility capabilities can be found documented in the <strong><em>org.quartz.plugins</em></strong>
+package. They provide functionality such as auto-scheduling of jobs upon scheduler startup, logging a history of job and
+trigger events, and ensuring that the scheduler shuts down cleanly when the JVM exits.</p>
 
-</code></pre>
+<h3 id="TutorialLesson13-JobFactory">JobFactory</h3>
 
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
-  public class MyJob implements Job {
-      private String myString;
-      private int myInt;
+<p>When a trigger fires, the Job it is associated to is instantiated via the JobFactory configured on the Scheduler.
+The default JobFactory simply calls newInstance() on the job class. You may want to create your own implementation of
+JobFactory to accomplish things such as having your application’s IoC or DI container produce/initialize the job
+instance.</p>
 
-      @Override
-      public void execute(final JobExecutionContext context) throws JobExecutionException {
-         System.print.ln("Job executing with myString: " + this.myString + " and myInt: " + this.myInt);
-      }
+<p>See the <strong>org.quartz.spi.JobFactory</strong> interface, and the associated <strong>Scheduler.setJobFactory(fact)</strong>
+method.</p>
 
-      public void setMyString(String myString){
-        this.myString = myString;
-      }
+<h3 id="TutorialLesson13-FactoryShippedJobs">‘Factory-Shipped’ Jobs</h3>
 
-      public void setMyString(int myInt){
-        this.myInt = myInt;
-      }
-  }
-</code></pre>
-
-<h3 id="TutorialLesson11-CustomJobFactories">Custom Job Factories</h3>
-<p>In order to avoid versioning problems with data persisted in the JobDataMap, you should only store primitives in the JobDetail's JobDataMap. To inject dependencies like DAO's or other interface implementations into your jobs, you can define a custom job factory by creating a class that implements the JobFactory interface.</p>
-
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
-  public class MyJobFactory implements JobFactory{
-
-    private final PersonDAO personDAO;
-
-    public MyJobFactory(final PersonDAO personDAO){
-      this.personDAO = personDAO
-    } 
-
-    @Override
-    public Job newJob(final TriggerFiredBundle bundle, final Scheduler scheduler) throws SchedulerException {
-      try {
-        Class<?> clazz = Class.forName(bundle.getJobDetail().getJobClass().getCanonicalName());
-
-        Constructor<?> constructor;
-        constructor = clazz.getConstructor(PersonDAO.class);
-
-        return (Job) constructor.newInstance(this.personDAO);
-      }
-      catch (Throwable e) {
-        throw new SchedulerException("Failed to create job!!!, e);
-      }
-    }
-  }
-</code></pre>
-
-<p>Once you have defined your JobFactory, you must set the JobFactory on your scheduler by either setting the property <strong>org.quartz.scheduler.jobFactory.class</strong> in your Quartz configuration or by setting the JobFactory when you construct the scheduler.</p>
-
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
-  SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
-  Scheduler sched = schedFact.getScheduler();
-  sched.setJobFactory(new MyJobFactory(new PersonDAO());
-
-  sched.start();
-</code></pre>
-
-<p>Finally, you need to ensure your Job has the constructor required for the JobFactory implementation that will be used.</p>
-
-<pre class="prettyprint highlight"><code class="language-java" data-lang="java">
-  public class MyJob implements Job {
-      
-      private String personName;
-      private PersonDAO personDAO;
-
-      public MyJob(PersonDAO personDAO){
-        this.personDAO = personDAO;
-      }
-
-      @Override
-      public void execute(final JobExecutionContext context) throws JobExecutionException {
-        this.personDAO.addPerson(context.getMergedJobDataMap().getString("personName")); 
-      }
-  }
-</code></pre>
-
-<p>Most implementers will find they do not require a custom job factory however, in the event that your Jobs needs complex objects that are likely to change over time, you can avoid dealing with versioning problems by injecting the dependency via a JobFactory rather than using the JobDataMap.</p>
+<p>Quartz also provides a number of utility Jobs that you can use in your application for doing things like sending
+e-mails and invoking EJBs. These out-of-the-box Jobs can be found documented in the <strong><em>org.quartz.jobs</em></strong>
+package.</p>
 
       </article>
     </div>
