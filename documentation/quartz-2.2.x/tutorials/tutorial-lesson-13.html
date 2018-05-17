@@ -173,16 +173,6 @@
 package. They provide functionality such as auto-scheduling of jobs upon scheduler startup, logging a history of job and
 trigger events, and ensuring that the scheduler shuts down cleanly when the JVM exits.</p>
 
-<h3 id="TutorialLesson13-JobFactory">JobFactory</h3>
-
-<p>When a trigger fires, the Job it is associated to is instantiated via the JobFactory configured on the Scheduler.
-The default JobFactory simply calls newInstance() on the job class. You may want to create your own implementation of
-JobFactory to accomplish things such as having your application’s IoC or DI container produce/initialize the job
-instance.</p>
-
-<p>See the <strong>org.quartz.spi.JobFactory</strong> interface, and the associated <strong>Scheduler.setJobFactory(fact)</strong>
-method.</p>
-
 <h3 id="TutorialLesson13-FactoryShippedJobs">‘Factory-Shipped’ Jobs</h3>
 
 <p>Quartz also provides a number of utility Jobs that you can use in your application for doing things like sending
