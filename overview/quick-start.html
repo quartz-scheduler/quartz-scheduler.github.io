@@ -286,7 +286,7 @@ will not terminate until you call scheduler.shutdown(), because there will be ac
 <p>If you have not set up logging, all logs will be sent to the console and your output will
 look something like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>[INFO] 21 Jan 08:46:27.857 AM main [org.quartz.core.QuartzScheduler]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] 21 Jan 08:46:27.857 AM main [org.quartz.core.QuartzScheduler]
 Quartz Scheduler v.2.0.0-SNAPSHOT created.
 
 [INFO] 21 Jan 08:46:27.859 AM main [org.quartz.simpl.RAMJobStore]
@@ -318,8 +318,7 @@ Scheduler Scheduler_$_NON_CLUSTERED paused.
 
 [INFO] 21 Jan 08:46:27.867 AM main [org.quartz.core.QuartzScheduler]
 Scheduler Scheduler_$_NON_CLUSTERED shutdown complete.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>To do something interesting, you need code between the <code class="highlighter-rouge">start()</code> and <code class="highlighter-rouge">shutdown()</code> calls.</p>
 
