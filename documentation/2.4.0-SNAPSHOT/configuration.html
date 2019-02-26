@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+  <title>Quartz Configuration Reference</title>
+
+  <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
+
+  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/2.4.0-SNAPSHOT/configuration.html">
+  <link rel="alternate" type="application/rss+xml" title="Quartz Enterprise Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
+
+
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Global CSS -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/spacelab/bootstrap.min.css">
+
+
+<!--
+  <link rel="stylesheet" href="/plugins/highlight/styles/idea.css">
+  <script src="/plugins/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+-->
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.css"></script>
+
+  <link rel="stylesheet" href="/css/main.css">
+
+<!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', prettyPrint)</script>
+-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-131151-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+  
+</head>
+
+
+  <body>
+
+    
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="site-title" href="/"><img src="/images/logo-quartz-scheduler.png" style="margin-top:15px;margin-bottom:6px;"/></a>
+          <span style="vertical-align:bottom;color:gray;display:inline-block;margin-bottom:.4em;">By</span>
+          <a class="SAG-Logo" href="http://www.softwareag.com/corporate/products/terracotta"><img src="/images/SAG_Logo.png" style="margin-top:12px;margin-bottom:6px;height:1.5em;width:9em;"/></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li id="site_mnu_about"><a href="/overview/"><i class="fa fa-info-circle"></i> About</a></li>
+            <li id="site_mnu_docs"><a href="/documentation/"><i class="fa fa-book"></i> Docs</a></li>
+            <li id="site_mnu_download"><a href="/downloads/"><i class="fa fa-download"></i> Download</a></li>
+            <li id="site_mnu_community" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Community <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">We Love Contributors</li>
+                <li><a href="/documentation/2.4.0-SNAPSHOT/community.html"><i class="fa fa-code"></i> Contributing</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Forums</li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler-dev" target="_blank"><i class="fa fa-commenting"></i> Developers' Forum</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Source Code</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz"><i class="fa fa-code-fork"></i> GitHub</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Bug Tracking</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz/issues"><i class="fa fa-bug"></i> GitHub</a></li>
+                <li><a href="http://jira.terracotta.org/jira/browse/QTZ"><i class="fa fa-bug"></i> Jira (historical)</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+<!--            <li id="site_mnu_events"><a href="/events"><i class="fa fa-calendar"></i> News & Events</a></li> -->
+            <li><a href="/blog/"><i class="fa fa-rss-square"></i>  Blog</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<br/>
+<br/>
+<br/>
+
+
+    <div class="container-fluid">
+      <div id="contentTitle">
+        <h1>Quartz Configuration Reference</h1>
+      </div>
+      <div>
+        <br/>
+
+<div class="container-fluid">
+
+  <div class="row row-offcanvas row-offcanvas-left">
+
+    <!-- sidebar -->
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <ul class="nav">
+          <li id="site_mnu_docs_home" class="submenu"><a href="/documentation/">Documentation Home</a></li>
+          <li id="site_mnu_docs_downloads" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#downloads">Downloads</a></li>
+          <li id="site_mnu_docs_release" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#release-and-general-information">Release</a></li>
+          <li id="site_mnu_docs_user_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#users-guide">User’s Guide</a></li>
+          <li id="site_mnu_docs_dev_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#quartz-developers-guide">Quartz Developer’s Guide</a></li>
+          <li id="site_mnu_docs_more_help" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#more-help">More Help?</a></li>
+        </ul>
+    </div>
+
+    <!-- main area -->
+    <div class="col-xs-12 col-sm-9">
+      <header class="post-header">
+        
+        <h1 class="post-title">Quartz Configuration Reference</h1>
+        <hr/>
+        
+      </header>
+      <article class="post-content">
+        <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#main-configuration-configuration-of-primary-scheduler-settings-transactions">Main Configuration (configuration of primary scheduler settings, transactions)</a></li>
+<li><a href="#configuration-of-threadpool-tune-resources-for-job-execution">Configuration of ThreadPool (tune resources for job execution)</a>
+<ul class="sectlevel2">
+<li><a href="#simplethreadpool-specific-properties">SimpleThreadPool-Specific Properties</a></li>
+<li><a href="#custom-threadpools">Custom ThreadPools</a></li>
+</ul>
+</li>
+<li><a href="#configuration-of-listeners-your-application-can-receive-notification-of-scheduled-events">Configuration of Listeners (your application can receive notification of scheduled events)</a></li>
+<li><a href="#configuration-of-plug-ins-add-functionality-to-your-scheduler">Configuration of Plug-Ins (add functionality to your scheduler)</a>
+<ul class="sectlevel2">
+<li><a href="#sample-configuration-of-logging-trigger-history-plugin">Sample configuration of Logging Trigger History Plugin</a></li>
+<li><a href="#sample-configuration-of-xml-scheduling-data-processor-plugin">Sample configuration of XML Scheduling Data Processor Plugin</a></li>
+<li><a href="#sample-configuration-of-shutdown-hook-plugin">Sample configuration of Shutdown Hook Plugin</a></li>
+</ul>
+</li>
+<li><a href="#configuration-of-rmi-server-and-client-use-a-quartz-instance-from-a-remote-process">Configuration of RMI Server and Client (use a Quartz instance from a remote process)</a></li>
+<li><a href="#configuration-of-ramjobstore-store-jobs-and-triggers-in-memory">Configuration of RAMJobStore (store jobs and triggers in memory)</a></li>
+<li><a href="#configuration-of-jdbc-jobstoretx-store-jobs-and-triggers-in-a-database-via-jdbc">Configuration of JDBC-JobStoreTX (store jobs and triggers in a database via JDBC)</a>
+<ul class="sectlevel2">
+<li><a href="#customizing-stdrowlocksemaphore">Customizing <code>StdRowLockSemaphore</code></a></li>
+</ul>
+</li>
+<li><a href="#configuration-of-jdbc-jobstorecmt-jdbc-with-jta-container-managed-transactions">Configuration of JDBC-JobStoreCMT (JDBC with JTA container-managed transactions)</a></li>
+<li><a href="#configuration-of-datasources-for-use-by-the-jdbc-jobstores">Configuration of DataSources (for use by the JDBC-JobStores)</a>
+<ul class="sectlevel2">
+<li><a href="#quartz-created-datasources-are-defined-with-the-following-properties">Quartz-created DataSources are defined with the following properties:</a></li>
+<li><a href="#references-to-application-server-datasources-are-defined-with-the-following-properties">References to Application Server DataSources are defined with the following properties:</a></li>
+<li><a href="#custom-connectionprovider-implementations">Custom ConnectionProvider Implementations</a></li>
+</ul>
+</li>
+<li><a href="#configuration-of-database-clustering-achieve-fail-over-and-load-balancing-with-jdbc-jobstore">Configuration of Database Clustering (achieve fail-over and load-balancing with JDBC-JobStore)</a></li>
+<li><a href="#configuration-of-terracottajobstore-clustering-without-a-database">Configuration of <code>TerracottaJobStore</code> (Clustering without a database!)</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Configuration of Quartz is typically done through the use of a properties file, in conjunction with the use of <code>StdSchedulerFactory</code> (which consumes the configuration file and instantiates a scheduler).</p>
+</div>
+<div class="paragraph">
+<p>By default, <code>StdSchedulerFactory</code> load a properties file named <code>quartz.properties</code> from the "current working directory". If that fails, then the <code>quartz.properties</code> file located (as a resource) in the <code>org/quartz</code> package is loaded. If you wish to use a file other than these defaults, you must define the system property <code>org.quartz.properties</code> to point to the file you want.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can explicitly initialize the factory by calling one of the <code>initialize(xx)</code> methods before calling <code>getScheduler()</code> on the <code>StdSchedulerFactory</code>.</p>
+</div>
+<div class="paragraph">
+<p>Instances of the specified JobStore, ThreadPool, and other SPI classes will be created by name, and then any additional properties specified for them in the config file will be set on the instance by calling an equivalent <code>set</code> method. For example if the properties file contains the property <code>org.quartz.jobStore.myProp = 10</code> then after the JobStore class has been instantiated, the method <code>setMyProp()</code> will be called on it. Type conversion to primitive Java types (int, long, float, double, boolean, and String) are performed before calling the property&#8217;s setter method.</p>
+</div>
+<div class="paragraph">
+<p>One property can reference another property&#8217;s value by specifying a value following the convention of <code>$@other.property.name</code>, for example, to reference the scheduler&#8217;s instance name as the value for some other property, you would use <code>$@org.quartz.scheduler.instanceName</code>.</p>
+</div>
+<div class="paragraph">
+<p>The properties for configuring various aspect of a scheduler are described in these sub-documents:
+Choose a topic:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="main-configuration-configuration-of-primary-scheduler-settings-transactions">Main Configuration (configuration of primary scheduler settings, transactions)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Configure Main Scheduler Settings</p>
+</div>
+<div class="paragraph">
+<p>These properties configure the identification of the scheduler, and various other "top level" settings.</p>
+</div>
+<table>
+  <thead>
+        <tr>
+            <th>Property Name</th>
+            <th>Req'd</th>
+            <th>Type</th>
+            <th>Default Value</th>
+        </tr>
+  </thead>
+  <tbody>
+        <tr>
+            <td>org.quartz.scheduler.instanceName</td>
+
+            <td>no</td>
+            <td>string</td>
+            <td>'QuartzScheduler'</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.instanceId</td>
+            <td>no</td>
+            <td>string</td>
+            <td>'NON_CLUSTERED'</td>
+        </tr>
+
+        <tr>
+            <td>org.quartz.scheduler.instanceIdGenerator.class</td>
+            <td>no</td>
+            <td>string (class name)</td>
+            <td>org.quartz.simpl<br>.SimpleInstanceIdGenerator</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.threadName</td>
+            <td>no</td>
+            <td>string</td>
+
+            <td>instanceName<br> + '_QuartzSchedulerThread'</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler<br>.makeSchedulerThreadDaemon</td>
+            <td>no</td>
+            <td>boolean</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler<br>
+	    .threadsInheritContextClassLoaderOfInitializer</td>
+            <td>no</td>
+
+            <td>boolean</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.idleWaitTime</td>
+            <td>no</td>
+            <td>long</td>
+            <td>30000</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.dbFailureRetryInterval</td>
+
+            <td>no</td>
+            <td>long</td>
+            <td>15000</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.classLoadHelper.class</td>
+            <td>no</td>
+            <td>string (class name)</td>
+            <td>org.quartz.simpl<br>.CascadingClassLoadHelper</td>
+        </tr>
+
+        <tr>
+            <td>org.quartz.scheduler.jobFactory.class</td>
+            <td>no</td>
+
+            <td>string (class name)</td>
+            <td>org.quartz.simpl.PropertySettingJobFactory</td>
+        </tr>
+        <tr>
+            <td>org.quartz.context.key.SOME_KEY</td>
+            <td>no</td>
+            <td>string</td>
+            <td>none</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.userTransactionURL</td>
+            <td>no</td>
+            <td>string (url)</td>
+
+            <td>'java:comp/UserTransaction'</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler<br>.wrapJobExecutionInUserTransaction</td>
+            <td>no</td>
+            <td>boolean</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.skipUpdateCheck</td>
+            <td>no</td>
+            <td>boolean</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler<br>.batchTriggerAcquisitionMaxCount</td>
+            <td>no</td>
+            <td>int</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler<br>.batchTriggerAcquisitionFireAheadTimeWindow</td>
+            <td>no</td>
+            <td>long</td>
+            <td>0</td>
+        </tr>
+    </tbody>
+</table>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.instanceName</code></p>
+</div>
+<div class="paragraph">
+<p>Can be any string, and the value has no meaning to the scheduler itself - but rather serves as a mechanism for client
+code to distinguish schedulers when multiple instances are used within the same program. If you are using the clustering
+features, you must use the same name for every instance in the cluster that is 'logically' the same Scheduler.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.instanceId</code></p>
+</div>
+<div class="paragraph">
+<p>Can be any string, but must be unique for all schedulers working as if they are the same 'logical' Scheduler within a
+cluster. You may use the value "AUTO" as the instanceId if you wish the Id to be generated for you.  Or the value
+"SYS_PROP" if you want the value to come from the system property "org.quartz.scheduler.instanceId".</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.instanceIdGenerator.class</code></p>
+</div>
+<div class="paragraph">
+<p>Only used if <strong>org.quartz.scheduler.instanceId</strong> is set to "AUTO". Defaults to
+"org.quartz.simpl.SimpleInstanceIdGenerator", which generates an instance id based upon host name and time stamp.
+Other IntanceIdGenerator implementations include SystemPropertyInstanceIdGenerator (which gets the instance id
+from the system property "org.quartz.scheduler.instanceId", and HostnameInstanceIdGenerator which uses the
+local host name (InetAddress.getLocalHost().getHostName()).  You can also implement the InstanceIdGenerator
+interface your self.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.threadName</code></p>
+</div>
+<div class="paragraph">
+<p>Can be any String that is a valid name for a java thread. If this property is not specified, the thread will receive the
+scheduler&#8217;s name ("org.quartz.scheduler.instanceName") plus an the appended string '_QuartzSchedulerThread'.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.makeSchedulerThreadDaemon</code></p>
+</div>
+<div class="paragraph">
+<p>A boolean value ('true' or 'false') that specifies whether the main thread of the scheduler should be a daemon thread or
+not. See also the <strong>org.quartz.scheduler.makeSchedulerThreadDaemon</strong> property for tuning the <code>SimpleThreadPool</code> if that is the thread pool implementation you are using (which is most likely the case).</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.threadsInheritContextClassLoaderOfInitializer</code></p>
+</div>
+<div class="paragraph">
+<p>A boolean value ('true' or 'false') that specifies whether the threads spawned by Quartz will inherit the context
+ClassLoader of the initializing thread (thread that initializes the Quartz instance). This will affect Quartz main
+scheduling thread, JDBCJobStore&#8217;s misfire handling thread (if JDBCJobStore is used), cluster recovery thread (if
+clustering is used), and threads in SimpleThreadPool (if SimpleThreadPool is used). Setting this value to 'true' may
+help with class loading, JNDI look-ups, and other issues related to using Quartz within an application server.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.idleWaitTime</code></p>
+</div>
+<div class="paragraph">
+<p>Is the amount of time in milliseconds that the scheduler will wait before re-queries for available triggers when the
+scheduler is otherwise idle. Normally you should not have to 'tune' this parameter, unless you&#8217;re using XA transactions,
+and are having problems with delayed firings of triggers that should fire immediately.  Values less than 5000 ms are not
+recommended as it will cause excessive database querying. Values less than 1000 are not legal.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.dbFailureRetryInterval</code></p>
+</div>
+<div class="paragraph">
+<p>Is the amount of time in milliseconds that the scheduler will wait between re-tries when it has detected a loss of
+connectivity within the JobStore (e.g. to the database). This parameter is obviously not very meaningful when using
+RamJobStore.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.classLoadHelper.class</code></p>
+</div>
+<div class="paragraph">
+<p>Defaults to the most robust approach, which is to use the "org.quartz.simpl.CascadingClassLoadHelper" class - which in
+turn uses every other ClassLoadHelper class until one works. You should probably not find the need to specify any other
+class for this property, though strange things seem to happen within application servers. All of the current possible
+ClassLoadHelper implementation can be found in the <strong>org.quartz.simpl</strong> package.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.jobFactory.class</code></p>
+</div>
+<div class="paragraph">
+<p>The class name of the JobFactory to use. A JobFatcory is responsible for producing instances of JobClasses.
+The default is 'org.quartz.simpl.PropertySettingJobFactory', which simply calls newInstance() on the class to produce
+a new instance each time execution is about to occur. PropertySettingJobFactory also reflectively
+sets the job&#8217;s bean properties using the contents of the SchedulerContext and Job and Trigger JobDataMaps.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.context.key.SOME_KEY</code></p>
+</div>
+<div class="paragraph">
+<p>Represent a name-value pair that will be placed into the "scheduler context" as strings. (see Scheduler.getContext()).
+So for example, the setting "org.quartz.context.key.MyKey = MyValue" would perform the equivalent of
+scheduler.getContext().put("MyKey", "MyValue").</p>
+</div>
+<div class="paragraph">
+<p>NOTE:
+The Transaction-Related properties should be left out of the config file unless you are using JTA transactions.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.userTransactionURL</code></p>
+</div>
+<div class="paragraph">
+<p>Should be set to the JNDI URL at which Quartz can locate the Application Server&#8217;s UserTransaction manager. The default
+value (if not specified) is "java:comp/UserTransaction" - which works for almost all Application Servers. Websphere
+users may need to set this property to "jta/usertransaction". This is only used if Quartz is configured to use
+JobStoreCMT, and <strong>org.quartz.scheduler.wrapJobExecutionInUserTransaction</strong> is set to true.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.wrapJobExecutionInUserTransaction</code></p>
+</div>
+<div class="paragraph">
+<p>Should be set to "true" if you want Quartz to start a UserTransaction before calling execute on your job. The Tx will
+commit after the job&#8217;s execute method completes, and after the JobDataMap is updated (if it is a StatefulJob). The
+default value is "false".  You may also be interested in using the <strong>@ExecuteInJTATransaction</strong> annotation
+on your job class, which lets you control for an individual job whether Quartz should start a JTA transaction -
+whereas this property causes it to occur for all jobs.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.skipUpdateCheck</code></p>
+</div>
+<div class="paragraph">
+<p>Whether or not to skip running a quick web request to determine if there is an updated version of Quartz available for
+download.  If the check runs, and an update is found, it will be reported as available in Quartz&#8217;s logs.  You
+can also disable the update check with the system property "org.terracotta.quartz.skipUpdateCheck=true" (which
+you can set in your system environment or as a -D on the java command line).  It is recommended that you disable
+the update check for production deployments.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.batchTriggerAcquisitionMaxCount</code></p>
+</div>
+<div class="paragraph">
+<p>The maximum number of triggers that a scheduler node is allowed to acquire (for firing) at once.  Default value
+is 1.  The larger the number, the more efficient firing is (in situations where there are very many triggers needing to
+be fired all at once) - but at the cost of possible imbalanced load between cluster nodes.  If the value of this
+property is set to &gt; 1, and JDBC JobStore is used, then the property "org.quartz.jobStore.acquireTriggersWithinLock"
+must be set to "true" to avoid data corruption.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.batchTriggerAcquisitionFireAheadTimeWindow</code></p>
+</div>
+<div class="paragraph">
+<p>The amount of time in milliseconds that a trigger is allowed to be acquired and fired ahead of its scheduled fire time.
+Defaults to 0.  The larger the number, the more likely batch acquisition of triggers to fire will be able to select
+and fire more than 1 trigger at a time - at the cost of trigger schedule not being honored precisely (triggers may
+fire this amount early).  This may be useful (for performance&#8217;s sake) in situations where the scheduler has very large
+numbers of triggers that need to be fired at or near the same time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-threadpool-tune-resources-for-job-execution">Configuration of ThreadPool (tune resources for job execution)</h2>
+<div class="sectionbody">
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>org.quartz.threadPool.class</td>
+<td>yes</td>
+<td>string (class name)</td>
+<td>null</td>
+</tr>
+
+<tr>
+<td>org.quartz.threadPool.threadCount</td>
+<td>yes</td>
+<td>int</td>
+<td>-1</td>
+</tr>
+
+<tr>
+<td>org.quartz.threadPool.threadPriority</td>
+<td>no</td>
+<td>int</td>
+<td>Thread.NORM_PRIORITY (5)</td>
+</tr>
+
+</tbody></table>
+<div class="paragraph">
+<p><code>org.quartz.threadPool.class</code></p>
+</div>
+<div class="paragraph">
+<p>Is the name of the ThreadPool implementation you wish to use.  The threadpool that ships with Quartz is "org.quartz.simpl.SimpleThreadPool", and should meet the needs of nearly every user.  It has very simple behavior and is very well tested.  It provides a fixed-size pool of threads that 'live' the lifetime of the Scheduler.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.threadPool.threadCount</code></p>
+</div>
+<div class="paragraph">
+<p>Can be any positive integer, although you should realize that only numbers between 1 and 100 are very practical.  This is the number of threads that are available for concurrent execution of jobs.  If you only have a few jobs that fire a few times a day, then 1 thread is plenty! If you have tens of thousands of jobs, with many firing every minute, then you probably want a thread count more like 50 or 100 (this highly depends on the nature of the work that your jobs perform, and your systems resources!).</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.threadPool.threadPriority</code></p>
+</div>
+<div class="paragraph">
+<p>Can be any int between <strong>Thread.MIN_PRIORITY</strong> (which is 1) and <strong>Thread.MAX_PRIORITY</strong> (which is 10).  The default is <strong>Thread.NORM_PRIORITY</strong> (5).</p>
+</div>
+<div class="sect2">
+<h3 id="simplethreadpool-specific-properties">SimpleThreadPool-Specific Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>org.quartz.threadPool.makeThreadsDaemons</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>org.quartz.threadPool.threadsInheritGroupOfInitializingThread</td>
+<td>no</td>
+<td>boolean</td>
+
+<td>true</td>
+</tr>
+<tr>
+<td>org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.threadPool.threadNamePrefix</td>
+<td>no</td>
+<td>string</td>
+<td>[Scheduler Name]_Worker</td>
+</tr>
+
+</tbody></table>
+<div class="paragraph">
+<p><code>org.quartz.threadPool.makeThreadsDaemons</code></p>
+</div>
+<div class="paragraph">
+<p>Can be set to "true" to have the threads in the pool created as daemon threads.  Default is "false".  See also the ConfigMain <code>org.quartz.scheduler.makeSchedulerThreadDaemon</code> property.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.threadPool.threadsInheritGroupOfInitializingThread</code></p>
+</div>
+<div class="paragraph">
+<p>Can be "true" or "false", and defaults to true.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread</code></p>
+</div>
+<div class="paragraph">
+<p>Can be "true" or "false", and defaults to false.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.threadPool.threadNamePrefix</code></p>
+</div>
+<div class="paragraph">
+<p>The prefix for thread names in the worker pool - will be postpended with a number.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="custom-threadpools">Custom ThreadPools</h3>
+<div class="paragraph">
+<p>If you use your own implementation of a thread pool, you can have properties set on it reflectively simply by naming the property as thus:</p>
+</div>
+<div class="paragraph">
+<p>Setting Properties on a Custom ThreadPool</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.threadPool.class = com.mycompany.goo.FooThreadPool
+org.quartz.threadPool.somePropOfFooThreadPool = someValue</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-listeners-your-application-can-receive-notification-of-scheduled-events">Configuration of Listeners (your application can receive notification of scheduled events)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Global listeners can be instantiated and configured by <code>StdSchedulerFactory</code>, or your application can do it itself
+at runtime, and then register the listeners with the scheduler. "Global" listeners listen to the events of every
+job/trigger rather than just the jobs/triggers that directly reference them.</p>
+</div>
+<div class="paragraph">
+<p>Configuring listeners through the configuration file consists of giving then a name, and then specifying the
+class name, and any other properties to be set on the instance. The class must have a no-arg constructor, and the
+properties are set reflectively. Only primitive data type values (including Strings) are supported.</p>
+</div>
+<div class="paragraph">
+<p>Thus, the general pattern for defining a "global" TriggerListener is:</p>
+</div>
+<div class="paragraph">
+<p>Configuring a Global <code>TriggerListener</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.triggerListener.NAME.class = com.foo.MyListenerClass
+org.quartz.triggerListener.NAME.propName = propValue
+org.quartz.triggerListener.NAME.prop2Name = prop2Value</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the general pattern for defining a "global" JobListener is:</p>
+</div>
+<div class="paragraph">
+<p>Configuring a Global <code>JobListener</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.jobListener.NAME.class = com.foo.MyListenerClass
+org.quartz.jobListener.NAME.propName = propValue
+org.quartz.jobListener.NAME.prop2Name = prop2Value</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-plug-ins-add-functionality-to-your-scheduler">Configuration of Plug-Ins (add functionality to your scheduler)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Like listeners configuring plugins through the configuration file consists of giving then a name, and then specifying the class name, and any other properties to be set on the instance. The class must have a no-arg constructor, and the properties are set reflectively. Only primitive data type values (including Strings) are supported.</p>
+</div>
+<div class="paragraph">
+<p>Thus, the general pattern for defining a plug-in is:</p>
+</div>
+<div class="paragraph">
+<p>Configuring a Plugin</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.plugin.NAME.class = com.foo.MyPluginClass
+org.quartz.plugin.NAME.propName = propValue
+org.quartz.plugin.NAME.prop2Name = prop2Value</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are several Plugins that come with Quartz, that can be found in the <strong>org.quartz.plugins</strong> package (and subpackages).  Example of configuring a few of them are as follows:</p>
+</div>
+<div class="sect2">
+<h3 id="sample-configuration-of-logging-trigger-history-plugin">Sample configuration of Logging Trigger History Plugin</h3>
+<div class="paragraph">
+<p>The logging trigger history plugin catches trigger events (it is also a trigger listener) and logs then with Jakarta Commons-Logging.  See the class&#8217;s JavaDoc for a list of all the possible parameters.</p>
+</div>
+<div class="paragraph">
+<p>Sample configuration of Logging Trigger History Plugin</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.plugin.triggHistory.class = \
+  org.quartz.plugins.history.LoggingTriggerHistoryPlugin
+org.quartz.plugin.triggHistory.triggerFiredMessage = \
+  Trigger \{1\}.\{0\} fired job \{6\}.\{5\} at: \{4, date, HH:mm:ss MM/dd/yyyy}
+org.quartz.plugin.triggHistory.triggerCompleteMessage = \
+  Trigger \{1\}.\{0\} completed firing job \{6\}.\{5\} at \{4, date, HH:mm:ss MM/dd/yyyy\}.</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sample-configuration-of-xml-scheduling-data-processor-plugin">Sample configuration of XML Scheduling Data Processor Plugin</h3>
+<div class="paragraph">
+<p>Job initialization plugin reads a set of jobs and triggers from an XML file, and adds them to the scheduler during initialization.  It can also delete exiting data.  See the class&#8217;s JavaDoc for more details.</p>
+</div>
+<div class="paragraph">
+<p>Sample configuration of JobInitializationPlugin</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.plugin.jobInitializer.class = org.quartz.plugins.xml.XMLSchedulingDataProcessorPlugin
+org.quartz.plugin.jobInitializer.fileNames = data/my_job_data.xml
+org.quartz.plugin.jobInitializer.failOnFileNotFound = true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The XML schema definition for the file can be found here:</p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.quartz-scheduler.org/xml/job_scheduling_data_1_8.xsd">/xml/job_scheduling_data_1_8.xsd</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sample-configuration-of-shutdown-hook-plugin">Sample configuration of Shutdown Hook Plugin</h3>
+<div class="paragraph">
+<p>The shutdown-hook plugin catches the event of the JVM terminating, and calls shutdown on the scheduler.</p>
+</div>
+<div class="paragraph">
+<p>Sample configuration of ShutdownHookPlugin</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.plugin.shutdownhook.class = org.quartz.plugins.management.ShutdownHookPlugin
+org.quartz.plugin.shutdownhook.cleanShutdown = true</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-rmi-server-and-client-use-a-quartz-instance-from-a-remote-process">Configuration of RMI Server and Client (use a Quartz instance from a remote process)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>None of the primary properties are required, and all have 'reasonable' defaults. When using Quartz via RMI, you
+need to start an instance of Quartz with it configured to "export" its services via RMI. You then create clients to the
+server by configuring a Quartz scheduler to "proxy" its work to the server.</p>
+</div>
+<div class="paragraph">
+<p>NOTE:
+Some users experience problems with class availability (namely Job classes) between the client and server. To work
+through these problems you&#8217;ll need an understanding of RMI&#8217;s "codebase" and RMI security managers. You may find these
+resources to be useful:</p>
+</div>
+<div class="paragraph">
+<p>An excellent description of RMI and codebase: <a href="http://www.kedwards.com/jini/codebase.html" class="bare">http://www.kedwards.com/jini/codebase.html</a>. One of the important points
+is to realize that "codebase" is used by the client!</p>
+</div>
+<div class="paragraph">
+<p>Quick info about security managers: <a href="http://gethelp.devx.com/techtips/java_pro/10MinuteSolutions/10min0500.asp" class="bare">http://gethelp.devx.com/techtips/java_pro/10MinuteSolutions/10min0500.asp</a></p>
+</div>
+<div class="paragraph">
+<p>And finally from the Java API docs, read the docs for the RMISecurityManager.</p>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Property Name</th>
+            <th>Required</th>
+
+            <th>Default Value</th>
+        </tr>
+   </thead>
+   <tbody>
+        <tr>
+            <td>org.quartz.scheduler.rmi.export</td>
+            <td>no</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.rmi.registryHost</td>
+            <td>no</td>
+            <td>'localhost'</td>
+
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.rmi.registryPort</td>
+            <td>no</td>
+            <td>1099</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.rmi.createRegistry</td>
+            <td>no</td>
+            <td>'never'</td>
+        </tr>
+
+        <tr>
+            <td>org.quartz.scheduler.rmi.serverPort</td>
+            <td>no</td>
+            <td>random</td>
+        </tr>
+        <tr>
+            <td>org.quartz.scheduler.rmi.proxy</td>
+            <td>no</td>
+            <td>false</td>
+        </tr>
+    </tbody>
+</table>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.rmi.export</code></p>
+</div>
+<div class="paragraph">
+<p>If you want the Quartz Scheduler to export itself via RMI as a server then set the 'rmi.export' flag to true.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.rmi.registryHost</code></p>
+</div>
+<div class="paragraph">
+<p>The host at which the RMI Registry can be found (often 'localhost').</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.rmi.registryPort</code></p>
+</div>
+<div class="paragraph">
+<p>The port on which the RMI Registry is listening (usually 1099).</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.rmi.createRegistry</code></p>
+</div>
+<div class="paragraph">
+<p>Set the 'rmi.createRegistry' flag according to how you want Quartz to cause the creation of an RMI Registry. Use "false"
+or "never" if you don&#8217;t want Quartz to create a registry (e.g. if you already have an external registry running). Use
+"true" or "as_needed" if you want Quartz to first attempt to use an existing registry, and then fall back to creating
+one. Use "always" if you want Quartz to attempt creating a Registry, and then fall back to using an existing one. If a
+registry is created, it will be bound to port number in the given 'org.quartz.scheduler.rmi.registryPort' property, and
+'org.quartz.rmi.registryHost' should be "localhost".</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.rmi.serverPort</code></p>
+</div>
+<div class="paragraph">
+<p>The port on which the the Quartz Scheduler service will bind and listen for connections. By default, the RMI service
+will 'randomly' select a port as the scheduler is bound to the RMI Registry.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.scheduler.rmi.proxy</code></p>
+</div>
+<div class="paragraph">
+<p>If you want to connect to (use) a remotely served scheduler, then set the 'org.quartz.scheduler.rmi.proxy' flag to true.
+You must also then specify a host and port for the RMI Registry process - which is typically 'localhost' port 1099.</p>
+</div>
+<div class="paragraph">
+<p>NOTE:
+It does not make sense to specify a 'true' value for both 'org.quartz.scheduler.rmi.export' and
+'org.quartz.scheduler.rmi.proxy' in the same config file - if you do, the 'export' option will be ignored. A value of
+'false' for both 'export' and 'proxy' properties is of course valid, if you&#8217;re not using Quartz via RMI.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-ramjobstore-store-jobs-and-triggers-in-memory">Configuration of RAMJobStore (store jobs and triggers in memory)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RAMJobStore is used to store scheduling information (job, triggers and calendars) within memory.  RAMJobStore is fast and lightweight, but all scheduling information is lost when the process terminates.</p>
+</div>
+<div class="paragraph">
+<p><code>RAMJobStore</code> is selected by setting the <code>org.quartz.jobStore.class</code> property as such:</p>
+</div>
+<div class="paragraph">
+<p>Setting The Scheduler&#8217;s <code>JobStore</code> to <code>RAMJobStore</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.jobStore.class = org.quartz.simpl.RAMJobStore</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>RAMJobStore can be tuned with the following properties:</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>org.quartz.jobStore.misfireThreshold</td>
+
+<td>no</td>
+<td>int</td>
+<td>60000</td>
+</tr>
+</tbody></table>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.misfireThreshold</code></p>
+</div>
+<div class="paragraph">
+<p>The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-jdbc-jobstoretx-store-jobs-and-triggers-in-a-database-via-jdbc">Configuration of JDBC-JobStoreTX (store jobs and triggers in a database via JDBC)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JDBCJobStore is used to store scheduling information (job, triggers and calendars) within a relational database.  There are actually two seperate JDBCJobStore classes that you can select between, depending on the transactional behaviour you need.</p>
+</div>
+<div class="paragraph">
+<p>JobStoreTX manages all transactions itself by calling commit() (or rollback()) on the database connection after every action (such as the addition of a job).  JDBCJobStore is appropriate if you are using Quartz in a stand-alone application, or within a servlet container if the application is not using JTA transactions.</p>
+</div>
+<div class="paragraph">
+<p>The JobStoreTX is selected by setting the <code>org.quartz.jobStore.class</code> property as such:</p>
+</div>
+<div class="paragraph">
+<p>Setting The Scheduler&#8217;s <code>JobStore</code> to <code>JobStoreTX</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.jobStore.class = org.quartz.impl.jdbcjobstore.JobStoreTX</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>JobStoreTX</code> can be tuned with the following properties:</p>
+</div>
+<table>
+
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>org.quartz.jobStore.driverDelegateClass</td>
+<td>yes</td>
+<td>string</td>
+<td>null</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.dataSource</td>
+<td>yes</td>
+<td>string</td>
+<td>null</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.tablePrefix</td>
+<td>no</td>
+<td>string</td>
+<td>"QRTZ_"</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.useProperties</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.misfireThreshold</td>
+<td>no</td>
+<td>int</td>
+<td>60000</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.isClustered</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.clusterCheckinInterval</td>
+<td>no</td>
+<td>long</td>
+<td>15000</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.maxMisfiresToHandleAtATime</td>
+<td>no</td>
+<td>int</td>
+<td>20</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.dontSetAutoCommitFalse</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.selectWithLockSQL</td>
+<td>no</td>
+<td>string</td>
+<td>"SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE"</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.txIsolationLevelSerializable</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.acquireTriggersWithinLock</td>
+<td>no</td>
+<td>boolean</td>
+<td>false (or true - see doc below)</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.lockHandler.class</td>
+<td>no</td>
+<td>string</td>
+<td>null</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.driverDelegateInitString</td>
+<td>no</td>
+<td>string</td>
+<td>null</td>
+</tr>
+
+</tbody></table>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.driverDelegateClass</code></p>
+</div>
+<div class="paragraph">
+<p>Driver delegates understand the particular 'dialects' of varies database systems.  Possible choices include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.StdJDBCDelegate</code> (for fully JDBC-compliant drivers)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.MSSQLDelegate</code> (for Microsoft SQL Server, and Sybase)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.PostgreSQLDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.WebLogicDelegate</code> (for WebLogic drivers)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.oracle.OracleDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.oracle.WebLogicOracleDelegate</code> (for Oracle drivers used within Weblogic)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.oracle.weblogic.WebLogicOracleDelegate</code> (for Oracle drivers used within Weblogic)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.CloudscapeDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.DB2v6Delegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.DB2v7Delegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.DB2v8Delegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.HSQLDBDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.PointbaseDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.SybaseDelegate</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note that many databases are known to work with the StdJDBCDelegate, while others are known to work with delegates for other databases, for example Derby works well with the Cloudscape delegate (no surprise there).</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.dataSource</code></p>
+</div>
+<div class="paragraph">
+<p>The value of this property must be the name of one the DataSources defined in the configuration properties file.  See the ConfigDataSources configuration docs for DataSources for more information.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.tablePrefix</code></p>
+</div>
+<div class="paragraph">
+<p>JDBCJobStore&#8217;s "table prefix" property is a string equal to the prefix given to Quartz&#8217;s tables that were created in your database.  You can have multiple sets of Quartz&#8217;s tables within the same database if they use different table prefixes.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.useProperties</code></p>
+</div>
+<div class="paragraph">
+<p>The "use properties" flag instructs JDBCJobStore that all values in JobDataMaps will be Strings, and therefore can be stored as name-value pairs, rather than storing more complex objects in their serialized form in the BLOB column.  This is can be handy, as you avoid the class versioning issues that can arise from serializing your non-String classes into a BLOB.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.misfireThreshold</code></p>
+</div>
+<div class="paragraph">
+<p>The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.isClustered</code></p>
+</div>
+<div class="paragraph">
+<p>Set to "true" in order to turn on clustering features. This property must be set to "true" if you are having multiple instances of Quartz use the same set of database tables&#8230;&#8203; otherwise you will experience havoc.  See the configuration docs for clustering for more information.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.clusterCheckinInterval</code></p>
+</div>
+<div class="paragraph">
+<p>Set the frequency (in milliseconds) at which this instance "checks-in"* with the other instances of the cluster. Affects the quickness of detecting failed instances.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.maxMisfiresToHandleAtATime</code></p>
+</div>
+<div class="paragraph">
+<p>The maximum number of misfired triggers the jobstore will handle in a given pass.  Handling many (more than a couple dozen) at once can cause the database tables to be locked long enough that the performance of firing other (not yet misfired) triggers may be hampered.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.dontSetAutoCommitFalse</code></p>
+</div>
+<div class="paragraph">
+<p>Setting this parameter to "true" tells Quartz not to call setAutoCommit(false) on connections obtained from the DataSource(s).  This can be helpful in a few situations, such as if you have a driver that complains if it is called when it is already off.  This property defaults to false, because most drivers require that setAutoCommit(false) is called.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.selectWithLockSQL</code></p>
+</div>
+<div class="paragraph">
+<p>Must be a SQL string that selects a row in the "LOCKS" table and places a lock on the row. If not set, the default is "SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE",  which works for most databases.  The "{0}" is replaced during run-time with the TABLE_PREFIX that you configured above.  The "{1}" is replaced with the scheduler&#8217;s name.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.txIsolationLevelSerializable</code></p>
+</div>
+<div class="paragraph">
+<p>A value of "true" tells Quartz (when using JobStoreTX or CMT) to call setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE) on JDBC connections.  This can be helpful to prevent lock timeouts with some databases under high load, and "long-lasting" transactions.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.acquireTriggersWithinLock</code></p>
+</div>
+<div class="paragraph">
+<p>Whether or not the acquisition of next triggers to fire should occur within an explicit database lock.  This was once necessary (in previous versions of Quartz) to avoid dead-locks with particular databases, but is no longer considered necessary, hence the default value is "false".</p>
+</div>
+<div class="paragraph">
+<p>If "org.quartz.scheduler.batchTriggerAcquisitionMaxCount" is set to &gt; 1, and JDBC JobStore is used, then this property must be set to "true" to avoid data corruption (as of Quartz 2.1.1 "true" is now the default if batchTriggerAcquisitionMaxCount is set &gt; 1).</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.lockHandler.class</code></p>
+</div>
+<div class="paragraph">
+<p>The class name to be used to produce an instance of a <code>org.quartz.impl.jdbcjobstore.Semaphore</code> to be used for locking control on the job store data.  This is an advanced configuration feature, which should not be used by most users.  By default, Quartz will select the most appropriate (pre-bundled) Semaphore implementation to use.  <code>org.quartz.impl.jdbcjobstore.UpdateLockRowSemaphore</code> <a href="http://jira.opensymphony.com/browse/QUARTZ-497">QUARTZ-497</a> may be of interest to MS SQL Server users.  See <a href="http://jira.opensymphony.com/browse/QUARTZ-441">QUARTZ-441</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="customizing-stdrowlocksemaphore">Customizing <code>StdRowLockSemaphore</code></h3>
+<div class="paragraph">
+<p>If you explicitly choose to use this DB Semaphore, you can customize it further on how frequent to poll for DB locks.</p>
+</div>
+<div class="paragraph">
+<p>Example of Using a Custom <code>StdRowLockSemaphore</code> Implementation</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.jobStore.lockHandler.class = org.quartz.impl.jdbcjobstore.StdRowLockSemaphore
+org.quartz.jobStore.lockHandler.maxRetry = 7     # Default is 3
+org.quartz.jobStore.lockHandler.maxRetry = 3000  # Default is 1000 millis</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.driverDelegateInitString</code></p>
+</div>
+<div class="paragraph">
+<p>A pipe-delimited list of properties (and their values) that can be passed to the DriverDelegate during initialization time.</p>
+</div>
+<div class="paragraph">
+<p>The format of the string is as such:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>settingName=settingValue|otherSettingName=otherSettingValue|...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The StdJDBCDelegate and all of its descendants (all delegates that ship with Quartz) support a property called 'triggerPersistenceDelegateClasses' which can be set to a comma-separated list of classes that implement the TriggerPersistenceDelegate interface for storing custom trigger types.  See the Java classes SimplePropertiesTriggerPersistenceDelegateSupport and SimplePropertiesTriggerPersistenceDelegateSupport for examples of writing a persistence delegate for a custom trigger.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-jdbc-jobstorecmt-jdbc-with-jta-container-managed-transactions">Configuration of JDBC-JobStoreCMT (JDBC with JTA container-managed transactions)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JDBCJobStore is used to store scheduling information (job, triggers and calendars) within a relational database.  There are actually two separate JDBCJobStore classes that you can select between, depending on the transactional behaviour you need.</p>
+</div>
+<div class="paragraph">
+<p>JobStoreCMT relies upon transactions being managed by the application which is using Quartz.  A JTA transaction must be in progress before attempt to schedule (or unschedule) jobs/triggers.  This allows the "work" of scheduling to be part of the applications "larger" transaction.  JobStoreCMT actually requires the use of two datasources - one that has it&#8217;s connection&#8217;s transactions managed by the application server (via JTA) and one datasource that has connections that do not participate in global (JTA) transactions.   JobStoreCMT is appropriate when applications are using JTA transactions (such as via EJB Session Beans) to perform their work.</p>
+</div>
+<div class="paragraph">
+<p>The JobStore is selected by setting the <code>org.quartz.jobStore.class</code> property as such:</p>
+</div>
+<div class="paragraph">
+<p>Setting The Scheduler&#8217;s <code>JobStore</code> to <code>JobStoreCMT</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.jobStore.class = org.quartz.impl.jdbcjobstore.JobStoreCMT</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>JobStoreCMT</code> can be tuned with the following properties:</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>org.quartz.jobStore.driverDelegateClass</td>
+<td>yes</td>
+<td>string</td>
+<td>null</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.dataSource</td>
+<td>yes</td>
+<td>string</td>
+<td>null</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.nonManagedTXDataSource</td>
+<td>yes</td>
+<td>string</td>
+<td>null</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.tablePrefix</td>
+<td>no</td>
+<td>string</td>
+<td>"QRTZ_"</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.useProperties</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.misfireThreshold</td>
+<td>no</td>
+<td>int</td>
+<td>60000</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.isClustered</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.clusterCheckinInterval</td>
+<td>no</td>
+<td>long</td>
+<td>15000</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.maxMisfiresToHandleAtATime</td>
+<td>no</td>
+<td>int</td>
+<td>20</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.dontSetAutoCommitFalse</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.dontSetNonManagedTXConnectionAutoCommitFalse</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.selectWithLockSQL</td>
+<td>no</td>
+<td>string</td>
+<td>"SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE"</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.txIsolationLevelSerializable</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.txIsolationLevelReadCommitted</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.acquireTriggersWithinLock</td>
+<td>no</td>
+<td>boolean</td>
+<td>false (or true - see doc below)</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.lockHandler.class</td>
+<td>no</td>
+<td>string</td>
+<td>null</td>
+</tr>
+
+<tr>
+<td>org.quartz.jobStore.driverDelegateInitString</td>
+<td>no</td>
+<td>string</td>
+<td>null</td>
+</tr>
+
+</tbody></table>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.driverDelegateClass</code></p>
+</div>
+<div class="paragraph">
+<p>Driver delegates understand the particular 'dialects' of varies database systems.  Possible choices include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.StdJDBCDelegate</code> (for fully JDBC-compliant drivers)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.MSSQLDelegate</code> (for Microsoft SQL Server, and Sybase)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.PostgreSQLDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.WebLogicDelegate</code> (for WebLogic drivers)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.oracle.OracleDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.oracle.WebLogicOracleDelegate</code> (for Oracle drivers used within Weblogic)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.oracle.weblogic.WebLogicOracleDelegate</code> (for Oracle drivers used within Weblogic)</p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.CloudscapeDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.DB2v6Delegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.DB2v7Delegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.DB2v8Delegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.HSQLDBDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.PointbaseDelegate</code></p>
+</li>
+<li>
+<p><code>org.quartz.impl.jdbcjobstore.SybaseDelegate</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note that many databases are known to work with the StdJDBCDelegate, while others are known to work with delegates for other databases, for example Derby works well with the Cloudscape delegate (no surprise there).</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.dataSource</code></p>
+</div>
+<div class="paragraph">
+<p>The value of this property must be the name of one the DataSources defined in the configuration properties file.  For JobStoreCMT, it is required that this DataSource contains connections that are capable of participating in JTA (e.g. container-managed) transactions.  This typically means that the DataSource will be configured and maintained within and by the application server, and Quartz will obtain a handle to it via JNDI.  See the ConfigDataSources configuration docs for DataSources for more information.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.nonManagedTXDataSource</code></p>
+</div>
+<div class="paragraph">
+<p>JobStoreCMT <strong>requires</strong> a (second) datasource that contains connections that will <strong>not</strong> be part of container-managed transactions.  The value of this property must be the name of one the DataSources defined in the configuration properties file.  This datasource must contain non-CMT connections, or in other words, connections for which it is legal for Quartz to directly call commit() and rollback() on.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.tablePrefix</code></p>
+</div>
+<div class="paragraph">
+<p>JDBCJobStore&#8217;s "table prefix" property is a string equal to the prefix given to Quartz&#8217;s tables that were created in your database.  You can have multiple sets of Quartz&#8217;s tables within the same database if they use different table prefixes.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.useProperties</code></p>
+</div>
+<div class="paragraph">
+<p>The "use properties" flag instructs JDBCJobStore that all values in JobDataMaps will be Strings, and therefore can be stored as name-value pairs, rather than storing more complex objects in their serialized form in the BLOB column.  This is can be handy, as you avoid the class versioning issues that can arise from serializing your non-String classes into a BLOB.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.misfireThreshold</code></p>
+</div>
+<div class="paragraph">
+<p>The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.isClustered</code></p>
+</div>
+<div class="paragraph">
+<p>Set to "true" in order to turn on clustering features. This property must be set to "true" if you are having multiple instances of Quartz use the same set of database tables&#8230;&#8203; otherwise you will experience havoc.  See the configuration docs for clustering for more information.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.clusterCheckinInterval</code></p>
+</div>
+<div class="paragraph">
+<p>Set the frequency (in milliseconds) at which this instance "checks-in"* with the other instances of the cluster. Affects the quickness of detecting failed instances.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.maxMisfiresToHandleAtATime</code></p>
+</div>
+<div class="paragraph">
+<p>The maximum number of misfired triggers the jobstore will handle in a given pass.  Handling many (more than a couple dozen) at once can cause the database tables to be locked long enough that the performance of firing other (not yet misfired) triggers may be hampered.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.dontSetAutoCommitFalse</code></p>
+</div>
+<div class="paragraph">
+<p>Setting this parameter to "true" tells Quartz not to call <strong>setAutoCommit(false)</strong> on connections obtained from the DataSource(s).  This can be helpful in a few situations, such as if you have a driver that complains if it is called when it is already off.  This property defaults to false, because most drivers require that <strong>setAutoCommit(false)</strong> is called.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.dontSetNonManagedTXConnectionAutoCommitFalse</code></p>
+</div>
+<div class="paragraph">
+<p>The same as the property <strong>org.quartz.jobStore.dontSetAutoCommitFalse</strong>, except that it applies to the nonManagedTXDataSource.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.selectWithLockSQL</code></p>
+</div>
+<div class="paragraph">
+<p>Must be a SQL string that selects a row in the "LOCKS" table and places a lock on the row. If not set, the default is "SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE",  which works for most databases.  The "{0}" is replaced during run-time with the TABLE_PREFIX that you configured above.  The "{1}" is replaced with the scheduler&#8217;s name.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.txIsolationLevelSerializable</code></p>
+</div>
+<div class="paragraph">
+<p>A value of "true" tells Quartz to call <strong>setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE)</strong> on JDBC connections.  This can be helpful to prevent lock timeouts with some databases under high load, and "long-lasting" transactions.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.txIsolationLevelReadCommitted</code></p>
+</div>
+<div class="paragraph">
+<p>When set to "true", this property tells Quartz to call <strong>setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED)</strong> on the non-managed JDBC connections.  This can be helpful to prevent lock timeouts with some databases (such as DB2) under high load, and "long-lasting" transactions.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.acquireTriggersWithinLock</code></p>
+</div>
+<div class="paragraph">
+<p>Whether or not the acquisition of next triggers to fire should occur within an explicit database lock.  This was once necessary (in previous versions of Quartz) to avoid dead-locks with particular databases, but is no longer considered necessary, hence the default value is "false".</p>
+</div>
+<div class="paragraph">
+<p>If "org.quartz.scheduler.batchTriggerAcquisitionMaxCount" is set to &gt; 1, and JDBC JobStore is used, then this property must be set to "true" to avoid data corruption (as of Quartz 2.1.1 "true" is now the default if batchTriggerAcquisitionMaxCount is set &gt; 1).</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.lockHandler.class</code></p>
+</div>
+<div class="paragraph">
+<p>The class name to be used to produce an instance of a <code>org.quartz.impl.jdbcjobstore.Semaphore</code> to be used for locking control on the job store data.  This is an advanced configuration feature, which should not be used by most users.  By default, Quartz will select the most appropriate (pre-bundled) Semaphore implementation to use.  <code>org.quartz.impl.jdbcjobstore.UpdateLockRowSemaphore</code> <a href="http://jira.opensymphony.com/browse/QUARTZ-497">QUARTZ-497</a> may be of interest to MS SQL Server users.  See <a href="http://jira.opensymphony.com/browse/QUARTZ-441">QUARTZ-441</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.driverDelegateInitString</code></p>
+</div>
+<div class="paragraph">
+<p>A pipe-delimited list of properties (and their values) that can be passed to the DriverDelegate during initialization time.</p>
+</div>
+<div class="paragraph">
+<p>The format of the string is as such:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>settingName=settingValue|otherSettingName=otherSettingValue|...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The StdJDBCDelegate and all of its descendants (all delegates that ship with Quartz) support a property called 'triggerPersistenceDelegateClasses' which can be set to a comma-separated list of classes that implement the TriggerPersistenceDelegate interface for storing custom trigger types.  See the Java classes SimplePropertiesTriggerPersistenceDelegateSupport and SimplePropertiesTriggerPersistenceDelegateSupport for examples of writing a persistence delegate for a custom trigger.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-datasources-for-use-by-the-jdbc-jobstores">Configuration of DataSources (for use by the JDBC-JobStores)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re using JDBC-Jobstore, you&#8217;ll be needing a DataSource for its use (or two DataSources, if you&#8217;re using JobStoreCMT).</p>
+</div>
+<div class="paragraph">
+<p>DataSources can be configured in three ways:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>All pool properties specified in the quartz.properties file, so that Quartz can create the DataSource itself.</p>
+</li>
+<li>
+<p>The JNDI location of an application server managed Datasource can be specified, so that Quartz can use it.</p>
+</li>
+<li>
+<p>Custom defined <strong>org.quartz.utils.ConnectionProvider</strong> implementations.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>It is recommended that your Datasource max connection size be configured to be at least the number of worker threads in the thread pool plus three.
+You may need additional connections if your application is also making frequent calls to the scheduler API.  If you are using JobStoreCMT,
+the "non managed" datasource should have a max connection size of at least four.</p>
+</div>
+<div class="paragraph">
+<p>Each DataSource you define (typically one or two) must be given a name, and the properties you define for each must contain that name, as shown below.  The DataSource&#8217;s "NAME" can be anything you want, and has no meaning other  than being able to identify it when it is assigned to the JDBCJobStore.</p>
+</div>
+<div class="sect2">
+<h3 id="quartz-created-datasources-are-defined-with-the-following-properties">Quartz-created DataSources are defined with the following properties:</h3>
+<table><thead>
+<tr>
+<th>Property Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>org.quartz.dataSource.NAME.driver</td>
+<td>yes</td>
+<td>String</td>
+<td>null</td>
+</tr>
+
+<tr>
+<td>org.quartz.dataSource.NAME.URL</td>
+<td>yes</td>
+<td>String</td>
+<td>null</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.user</td>
+<td>no</td>
+<td>String</td>
+
+<td>""</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.password</td>
+<td>no</td>
+<td>String</td>
+<td>""</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.maxConnections</td>
+
+<td>no</td>
+<td>int</td>
+<td>10</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.validationQuery</td>
+<td>no</td>
+<td>String</td>
+<td>null</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.idleConnectionValidationSeconds</td>
+<td>no</td>
+<td>int</td>
+<td>50</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.validateOnCheckout</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.discardIdleConnectionsSeconds</td>
+<td>no</td>
+<td>int</td>
+<td>0 (disabled)</td>
+</tr>
+
+</tbody></table>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.driver</code></p>
+</div>
+<div class="paragraph">
+<p>Must be the java class name of the JDBC driver for your database.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.URL</code></p>
+</div>
+<div class="paragraph">
+<p>The connection URL (host, port, etc.) for connection to your database.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.user</code></p>
+</div>
+<div class="paragraph">
+<p>The user name to use when connecting to your database.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.password</code></p>
+</div>
+<div class="paragraph">
+<p>The password to use when connecting to your database.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.maxConnections</code></p>
+</div>
+<div class="paragraph">
+<p>The maximum number of connections that the DataSource can create in it&#8217;s pool of connections.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.validationQuery</code></p>
+</div>
+<div class="paragraph">
+<p>Is an optional SQL query string that the DataSource can use to detect and replace failed/corrupt connections.
+For example an oracle user might choose "select table_name from user_tables" - which is a  query that should never
+fail - unless the connection is actually bad.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.idleConnectionValidationSeconds</code></p>
+</div>
+<div class="paragraph">
+<p>The number of seconds between tests of idle connections - only enabled if the validation query property is set.
+Default is 50 seconds.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.validateOnCheckout</code></p>
+</div>
+<div class="paragraph">
+<p>Whether the database sql query to validate connections should be executed every time a connection is retrieved
+from the pool to ensure that it is still valid.  If false, then validation will occur on check-in.  Default is false.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.discardIdleConnectionsSeconds</code></p>
+</div>
+<div class="paragraph">
+<p>Discard connections after they have been idle this many seconds.  0 disables the feature. Default is 0.</p>
+</div>
+<div class="paragraph">
+<p>Example of a Quartz-defined DataSource</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.dataSource.myDS.driver = oracle.jdbc.driver.OracleDriver
+org.quartz.dataSource.myDS.URL = jdbc:oracle:thin:@10.0.1.23:1521:demodb
+org.quartz.dataSource.myDS.user = myUser
+org.quartz.dataSource.myDS.password = myPassword
+org.quartz.dataSource.myDS.maxConnections = 30</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-to-application-server-datasources-are-defined-with-the-following-properties">References to Application Server DataSources are defined with the following properties:</h3>
+<table><thead>
+<tr>
+<th>Property Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>org.quartz.dataSource.NAME.jndiURL</td>
+<td>yes</td>
+<td>String</td>
+<td>null</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.java.naming.factory.initial</td>
+<td>no</td>
+
+<td>String</td>
+<td>null</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.java.naming.provider.url</td>
+<td>no</td>
+<td>String</td>
+<td>null</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.java.naming.security.principal</td>
+
+<td>no</td>
+<td>String</td>
+<td>null</td>
+</tr>
+<tr>
+<td>org.quartz.dataSource.NAME.java.naming.security.credentials</td>
+<td>no</td>
+<td>String</td>
+<td>null</td>
+</tr>
+
+</tbody></table>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.jndiURL</code></p>
+</div>
+<div class="paragraph">
+<p>The JNDI URL for a DataSource that is managed by your application server.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.java.naming.factory.initial</code></p>
+</div>
+<div class="paragraph">
+<p>The (optional) class name of the  JNDI InitialContextFactory that you wish to use.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.java.naming.provider.url</code></p>
+</div>
+<div class="paragraph">
+<p>The (optional) URL for connecting to the JNDI context.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.java.naming.security.principal</code></p>
+</div>
+<div class="paragraph">
+<p>The (optional) user principal for connecting to the JNDI context.</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.java.naming.security.credentials</code></p>
+</div>
+<div class="paragraph">
+<p>The (optional) user credentials for connecting to the JNDI context.</p>
+</div>
+<div class="paragraph">
+<p>Example of a Datasource referenced from an Application Server</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.dataSource.myOtherDS.jndiURL=jdbc/myDataSource
+org.quartz.dataSource.myOtherDS.java.naming.factory.initial=com.evermind.server.rmi.RMIInitialContextFactory
+org.quartz.dataSource.myOtherDS.java.naming.provider.url=ormi:&lt;span class="code-comment"&gt;//localhost
+&lt;/span&gt;org.quartz.dataSource.myOtherDS.java.naming.security.principal=admin
+org.quartz.dataSource.myOtherDS.java.naming.security.credentials=123</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="custom-connectionprovider-implementations">Custom ConnectionProvider Implementations</h3>
+<table><thead>
+<tr>
+<th>Property Name</th>
+<th>Required</th>
+
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>org.quartz.dataSource.NAME.connectionProvider.class</td>
+<td>yes</td>
+<td>String (class name)</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<div class="paragraph">
+<p><code>org.quartz.dataSource.NAME.connectionProvider.class</code></p>
+</div>
+<div class="paragraph">
+<p>The class name of the ConnectionProvider to use.  After instantiating the class, Quartz can automatically set configuration properties on the instance, bean-style.</p>
+</div>
+<div class="paragraph">
+<p>Example of Using a Custom <code>ConnectionProvider</code> Implementation</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.dataSource.myCustomDS.connectionProvider.class = com.foo.FooConnectionProvider
+org.quartz.dataSource.myCustomDS.someStringProperty = someValue
+org.quartz.dataSource.myCustomDS.someIntProperty = 5</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-database-clustering-achieve-fail-over-and-load-balancing-with-jdbc-jobstore">Configuration of Database Clustering (achieve fail-over and load-balancing with JDBC-JobStore)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Quartz&#8217;s clustering features bring both high availability and scalability to your scheduler via fail-over and load balancing functionality.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://www.quartz-scheduler.org/documentation/quartz-2.2.x/configuration/quartz_cluster.png" alt="quartz_cluster">
+</div>
+</div>
+<div class="paragraph">
+<p>Clustering currently only works with the JDBC-Jobstore (JobStoreTX or JobStoreCMT), and essentially works by having each node of the cluster share the same database.</p>
+</div>
+<div class="paragraph">
+<p>Load-balancing occurs automatically, with each node of the cluster firing jobs as quickly as it can.  When a trigger&#8217;s firing time occurs, the first node to acquire it (by placing a lock on it) is the node that will fire it.</p>
+</div>
+<div class="paragraph">
+<p>Only one node will fire the job for each firing.   What I mean by that is, if the job has a repeating trigger that
+tells it to fire every 10 seconds, then at 12:00:00 exactly one node will run the job, and at 12:00:10 exactly one
+node will run the job, etc.    It won&#8217;t necessarily be the same node each time - it will more or less be random which
+node runs it.  The load balancing mechanism is near-random for busy schedulers (lots of triggers) but favors the
+same node for non-busy (e.g. few triggers) schedulers.</p>
+</div>
+<div class="paragraph">
+<p>Fail-over occurs when one of the nodes fails while in the midst of executing one or more jobs.  When a node fails,
+the other nodes detect the condition and identify the jobs in the database that were in progress within the failed node.
+Any jobs marked for recovery (with the "requests recovery" property on the JobDetail) will be re-executed by the
+remaining nodes.  Jobs not marked for recovery will simply be freed up for execution at the next time a related trigger fires.</p>
+</div>
+<div class="paragraph">
+<p>The clustering feature works best for scaling out long-running and/or cpu-intensive jobs (distributing the work-load
+over multiple nodes).  If you need to scale out to support thousands of short-running (e.g 1 second) jobs, consider
+partitioning the set of jobs by using multiple distinct schedulers (including multiple clustered schedulers for HA).
+The scheduler makes use of a cluster-wide lock, a pattern that degrades performance as you add more nodes (when going
+beyond about three nodes - depending upon your database&#8217;s capabilities, etc.).</p>
+</div>
+<div class="paragraph">
+<p>Enable clustering by setting the "org.quartz.jobStore.isClustered" property to "true". Each instance in the cluster should use the same copy of the quartz.properties file. Exceptions of this would be to use properties files that are identical, with the following allowable exceptions: Different thread pool size, and different value for the "org.quartz.scheduler.instanceId" property. Each node in the cluster MUST have a unique instanceId, which is easily done (without needing different properties files) by placing "AUTO" as the value of this property.  See the info about the configuration properties of JDBC-JobStore for more information.</p>
+</div>
+<div class="paragraph">
+<p>NOTE:
+Never run clustering on separate machines, unless their clocks are synchronized using some form of time-sync service (daemon) that runs very regularly (the clocks must be within a second of each other). See <a href="https://www.nist.gov/pml/time-and-frequency-division/services/internet-time-service-its" class="bare">https://www.nist.gov/pml/time-and-frequency-division/services/internet-time-service-its</a> if you are unfamiliar with how to do this.</p>
+</div>
+<div class="paragraph">
+<p>NOTE:
+Never start (scheduler.start()) a non-clustered instance against the same set of database tables that any other instance is running (start()ed) against. You may get serious data corruption, and will definitely experience erratic behavior.</p>
+</div>
+<div class="paragraph">
+<p>Example Properties For A Clustered Scheduler</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#============================================================================
+# Configure Main Scheduler Properties
+#============================================================================
+
+org.quartz.scheduler.instanceName = MyClusteredScheduler
+org.quartz.scheduler.instanceId = AUTO
+
+#============================================================================
+# Configure ThreadPool
+#============================================================================
+
+org.quartz.threadPool.class = org.quartz.simpl.SimpleThreadPool
+org.quartz.threadPool.threadCount = 25
+org.quartz.threadPool.threadPriority = 5
+
+#============================================================================
+# Configure JobStore
+#============================================================================
+
+org.quartz.jobStore.misfireThreshold = 60000
+
+org.quartz.jobStore.class = org.quartz.impl.jdbcjobstore.JobStoreTX
+org.quartz.jobStore.driverDelegateClass = org.quartz.impl.jdbcjobstore.oracle.OracleDelegate
+org.quartz.jobStore.useProperties = &lt;span class="code-keyword"&gt;false&lt;/span&gt;
+org.quartz.jobStore.dataSource = myDS
+org.quartz.jobStore.tablePrefix = QRTZ_
+
+org.quartz.jobStore.isClustered = &lt;span class="code-keyword"&gt;true&lt;/span&gt;
+org.quartz.jobStore.clusterCheckinInterval = 20000
+
+#============================================================================
+# Configure Datasources
+#============================================================================
+
+org.quartz.dataSource.myDS.driver = oracle.jdbc.driver.OracleDriver
+org.quartz.dataSource.myDS.URL = jdbc:oracle:thin:@polarbear:1521:dev
+org.quartz.dataSource.myDS.user = quartz
+org.quartz.dataSource.myDS.password = quartz
+org.quartz.dataSource.myDS.maxConnections = 5
+org.quartz.dataSource.myDS.validationQuery=select 0 from dual</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration-of-terracottajobstore-clustering-without-a-database">Configuration of <code>TerracottaJobStore</code> (Clustering without a database!)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>TerracottaJobStore</code> is used to store scheduling information (job, triggers and calendars) within a Terracotta server.
+<code>TerracottaJobStore</code> is much more performant than utilizing a database for storing scheduling data (via JDBC-JobStore),
+and yet offers clustering features such as load-balancing and fail-over.</p>
+</div>
+<div class="paragraph">
+<p>You may want to consider implications of how you setup your Terracotta server, particularly configuration
+options that turn on features such as storing data on disk, utilization of fsync, and running an array of Terracotta
+servers for HA.</p>
+</div>
+<div class="paragraph">
+<p>The clustering feature works best for scaling out long-running and/or cpu-intensive jobs (distributing the work-load
+over multiple nodes).  If you need to scale out to support thousands of short-running (e.g 1 second) jobs, consider
+partitioning the set of jobs by using multiple distinct schedulers. Using more than one scheduler currently forces the use of a
+cluster-wide lock, a pattern that degrades performance as you add more clients.</p>
+</div>
+<div class="paragraph">
+<p>More information about this JobStore and Terracotta can be found at <a href="http://www.terracotta.org/quartz" class="bare">http://www.terracotta.org/quartz</a></p>
+</div>
+<div class="paragraph">
+<p><code>TerracottaJobStore</code> is selected by setting the <code>org.quartz.jobStore.class</code> property as such:</p>
+</div>
+<div class="paragraph">
+<p>Setting The Scheduler&#8217;s <code>JobStore</code> to <code>TerracottaJobStore</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.jobStore.class = org.terracotta.quartz.TerracottaJobStore</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>TerracottaJobStore</code> can be tuned with the following properties:</p>
+</div>
+<table><thead>
+<tr>
+<th>Property Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>org.quartz.jobStore.tcConfigUrl</td>
+
+<td>yes</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>org.quartz.jobStore.misfireThreshold</td>
+
+<td>no</td>
+<td>int</td>
+<td>60000</td>
+</tr>
+</tbody></table>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.tcConfigUrl</code></p>
+</div>
+<div class="paragraph">
+<p>The host and port identifying the location of the Terracotta server to connect to, such as "localhost:9510".</p>
+</div>
+<div class="paragraph">
+<p><code>org.quartz.jobStore.misfireThreshold</code></p>
+</div>
+<div class="paragraph">
+<p>The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
+</div>
+</div>
+</div>
+      </article>
+    </div>
+
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+    <br/>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Related Projects:<br/>
+        <a href="http://www.terracotta.org"><img src="/images/Terracotta_Logo_sm.png" style="max-height: 20px;"></a><br/>
+        <a href="http://www.ehcache.org"><img src="/images/ehcache.png" style="max-height: 44px;"></a>
+
+        <!--
+        <ul class="contact-list">
+          <li>Quartz Enterprise Job Scheduler</li>
+          <li><a href="mailto:tc-oss@softwareag.com">tc-oss@softwareag.com</a></li>
+        </ul>
+      -->
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/quartz-scheduler">
+              <i class="fa fa-github"></i> GitHub
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/terracottatech">
+              <i class="fa fa-twitter"></i> Twitter
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.facebook.com/Terracotta">
+              <i class="fa fa-facebook"></i> Facebook
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.linkedin.com/company/terracotta">
+              <i class="fa fa-linkedin"></i> LinkedIn
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+    <div class="footer-col  footer-col-3">
+      <a href="/downloads/"><i class="fa fa-download"></i> Download Now</a>
+      <br/>
+      <a href="/documentation/"><i class="fa fa-book"></i> Documentation</a>
+      <br/>
+      <a href="/community/"><i class="fa fa-users"></i> Join the Community</a>
+    </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <hr/>
+        <a class="SAG-Logo" href="http://www.softwareag.com/corporate/products/terracotta"><img src="/images/SAG_Logo.png" style="height:1.5em;width:9em;"/></a>
+        <div class="footer-text">
+          <em class="copyleft">Quartz Job Scheduler is Open Source and freely available under the Apache 2 License</em>
+          <br/>
+          <em class="copyright">&copy; Terracotta, Inc., a wholly-owned subsidiary of Software AG USA, Inc. All rights reserved.</em>
+        </div>
+    </div>
+  </div>
+
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+
+<!--  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"/> -->
+
+<script type="text/javascript">
+        $('#').addClass("active");
+        $('#').addClass("active");
+</script>
+
+
+  </body>
+
+</html>

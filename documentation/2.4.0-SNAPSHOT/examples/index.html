@@ -10,11 +10,11 @@
   <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
-  <title>Features</title>
+  <title>Examples Overview</title>
 
   <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
 
-  <link rel="canonical" href="http://www.quartz-scheduler.org/overview/features.html">
+  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/2.4.0-SNAPSHOT/examples/">
   <link rel="alternate" type="application/rss+xml" title="Quartz Enterprise Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
 
 
@@ -96,7 +96,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Community <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">We Love Contributors</li>
-                <li><a href="/community/"><i class="fa fa-code"></i> Contributing</a></li>
+                <li><a href="/documentation/2.4.0-SNAPSHOT/community.html"><i class="fa fa-code"></i> Contributing</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Forums</li>
                 <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
@@ -113,7 +113,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
 <!--            <li id="site_mnu_events"><a href="/events"><i class="fa fa-calendar"></i> News & Events</a></li> -->
-            <li><a href="http://blog.terracotta.org"><i class="fa fa-rss-square"></i>  Blog</a></li>
+            <li><a href="/blog/"><i class="fa fa-rss-square"></i>  Blog</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -126,7 +126,7 @@
 
     <div class="container-fluid">
       <div id="contentTitle">
-        <h1>Features</h1>
+        <h1>Examples Overview</h1>
       </div>
       <div>
         <br/>
@@ -138,92 +138,126 @@
     <!-- sidebar -->
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
         <ul class="nav">
-          <li id="site_mnu_about_about" class="submenu"><a href="index.html">About</a></li>
-          <li id="site_mnu_about_features" class="submenu"><a href="features.html">Features</a></li>
-          <li id="site_mnu_about_quick_start" class="submenu"><a href="quick-start.html">Quick Start</a></li>
-          <li id="site_mnu_about_license" class="submenu"><a href="license.html">License</a></li>
+          <li id="site_mnu_docs_home" class="submenu"><a href="/documentation/">Documentation Home</a></li>
+          <li id="site_mnu_docs_downloads" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#downloads">Downloads</a></li>
+          <li id="site_mnu_docs_release" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#release-and-general-information">Release</a></li>
+          <li id="site_mnu_docs_user_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#users-guide">User’s Guide</a></li>
+          <li id="site_mnu_docs_dev_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#quartz-developers-guide">Quartz Developer’s Guide</a></li>
+          <li id="site_mnu_docs_more_help" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#more-help">More Help?</a></li>
         </ul>
     </div>
 
     <!-- main area -->
     <div class="col-xs-12 col-sm-9">
       <header class="post-header">
-        <h1 class="post-title">Features of Quartz </h1>
+        
+        <h1 class="post-title">Examples Overview</h1>
         <hr/>
+        
       </header>
       <article class="post-content">
-        <h2 id="runtime-environments">Runtime Environments</h2>
-
-<ul>
-  <li>Quartz can run embedded within another free standing application</li>
-  <li>Quartz can be instantiated within an application server (or servlet container), and participate in XA transactions</li>
-  <li>Quartz can run as a stand-alone program (within its own Java Virtual Machine), to be used via RMI</li>
-  <li>Quartz can be instantiated as a cluster of stand-alone programs (with load-balance and fail-over capabilities) for the execution of jobs</li>
-</ul>
-
-<h2 id="job-scheduling">Job Scheduling</h2>
-
-<p>Jobs are scheduled to run when a given Trigger occurs. Triggers can be created with nearly any combination of
-the following directives:</p>
-
-<ul>
-  <li>at a certain time of day (to the millisecond)</li>
-  <li>on certain days of the week</li>
-  <li>on certain days of the month</li>
-  <li>on certain days of the year</li>
-  <li>not on certain days listed within a registered Calendar (such as business holidays)</li>
-  <li>repeated a specific number of times</li>
-  <li>repeated until a specific time/date</li>
-  <li>repeated indefinitely</li>
-  <li>repeated with a delay interval</li>
-</ul>
-
-<p>Jobs are given names by their creator and can also be organized into named groups. Triggers may also be given
-names and placed into groups, in order to easily organize them within the scheduler. Jobs can be added to the
-scheduler once, but registered with multiple Triggers. Within an enterprise Java environment, Jobs can perform their work
-as part of a distributed (XA) transaction.</p>
-
-<h2 id="job-execution">Job Execution</h2>
-
-<ul>
-  <li>Jobs can be any Java class that implements the simple Job interface, leaving infinite possibilities for the work your Jobs can perform.</li>
-  <li>Job class instances can be instantiated by Quartz, or by your application’s framework.</li>
-  <li>When a Trigger occurs, the scheduler notifies zero or more Java objects implementing the JobListener and TriggerListener interfaces (listeners can be simple Java objects, or EJBs, or JMS publishers, etc.). These listeners are also notified after the Job has executed.</li>
-  <li>As Jobs are completed, they return a JobCompletionCode which informs the scheduler of success or failure. The JobCompletionCode can also instruct the scheduler of any actions it should take based on the success/fail code - such as immediate re-execution of the Job.</li>
-</ul>
-
-<h2 id="job-persistence">Job Persistence</h2>
-
-<ul>
-  <li>The design of Quartz includes a JobStore interface that can be implemented to provide various mechanisms for the storage of jobs.</li>
-  <li>With the use of the included JDBCJobStore, all Jobs and Triggers configured as “non-volatile” are stored in a relational database via JDBC.</li>
-  <li>With the use of the included RAMJobStore, all Jobs and Triggers are stored in RAM and therefore do not persist between program executions - but this has the advantage of not requiring an external database.</li>
-</ul>
-
-<h2 id="transactions">Transactions</h2>
-
-<ul>
-  <li>Quartz can participate in JTA transactions, via the use of JobStoreCMT (a subclass of JDBCJobStore).</li>
-  <li>Quartz can manage JTA transactions (begin and commit them) around the execution of a Job, so that the work performed by the Job automatically happens within a JTA transaction.</li>
-</ul>
-
-<h2 id="clustering">Clustering</h2>
-
-<ul>
-  <li>Fail-over.</li>
-  <li>Load balancing.</li>
-  <li>Quartz’s built-in clustering features rely upon database persistence via JDBCJobStore (described above).</li>
-  <li>Terracotta extensions to Quartz provide clustering capabilities without the need for a backing database.</li>
-</ul>
-
-<h2 id="listeners--plug-ins">Listeners &amp; Plug-Ins</h2>
-
-<ul>
-  <li>Applications can catch scheduling events to monitor or control job/trigger behavior by implementing one or more listener interfaces.</li>
-  <li>The Plug-In mechanism can be used add functionality to Quartz, such keeping a history of job executions, or loading job and trigger definitions from a file.</li>
-  <li>Quartz ships with a number of “factory built” plug-ins and listeners.</li>
-</ul>
-
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to the documentation for the Quartz Example programs. Quartz ships with 13 out-of-the-box examples that demonstrate the various features of Quartz and the Quartz API.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="where-to-find-the-examples"><a href="#ExamplesOverview-WheretoFindtheExamples">Where to Find the Examples</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All of the examples listed below are part of the <a href="../downloads.adoc">Quartz distribution</a>. Or directly from the <a href="../../distribution/examples/src/main/java/org/quartz/examples">Quartz source code</a></p>
+</div>
+<div class="paragraph">
+<p>The quartz examples are listed under the <strong>examples</strong> directory under the main Quartz directory. Under the <strong>examples</strong> directory, you will find an example sub-directory for each example, labeled <strong>example1</strong>, <strong>example2</strong>, <strong>example3</strong> etc…</p>
+</div>
+<div class="paragraph">
+<p>Every example contains UNIX/Linux shell scripts for executing the examples as well at Windows batch files. Additionally, every example has a readme.txt file. Please consult this file before running the examples.</p>
+</div>
+<div class="paragraph">
+<p>The source code for the examples are located in package <strong>org.quartz.examples</strong>. Every example has its own sub-package, <strong>org.quartz.examples.example1</strong>, <strong>org.quartz.examples.example2</strong>, etc…</p>
+</div>
+<div class="paragraph">
+<p>Here we give an overview of each example program:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-examples"><a href="#ExamplesOverview-TheExamples">The Examples</a></h2>
+<div class="sectionbody">
+<table>
+  <thead>
+    <tr>
+    <th> Title </th>
+    <th> Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>Example 1 - <a href="Example1.html">First Quartz Program</a></td>
+    <td> Think of this as a "Hello World" for Quartz </td>
+    </tr>
+    <tr>
+    <td> Example 2 - Simple Triggers </td>
+    <td> Shows a dozen different ways of using Simple Triggers to schedule your jobs </td>
+    </tr>
+    <tr>
+    <td> Example 3 - <a href="Example3.html">Cron Triggers</a> </td>
+    <td> Shows how Cron Triggers can be used to schedule your job </td>
+    </tr>
+    <tr>
+    <td> Example 4 - <a href="Example4.html">Job State and Parameters</a></td>
+    <td> Demonstrates how parameters can be passed into jobs and how jobs maintain state </td>
+    </tr>
+    <tr>
+    <td> Example 5 - <a href="Example5.html">Handling Job Misfires</a> </td>
+    <td> Sometimes job will not execute when they are supposed to.  See how to handle these Misfires </td>
+    </tr>
+    <tr>
+    <td> Example 6 - <a href="Example6.html">Dealing with Job Exceptions</a> </td>
+    <td> No job is perfect.  See how you can let the scheduler know how to deal with exceptions that are thrown by your job </td>
+    </tr>
+    <tr>
+    <td> Example 7 - Interrupting Jobs </td>
+    <td> Shows how the scheduler can interrupt your jobs and how to code your jobs to deal with interruptions </td>
+    </tr>
+    <tr>
+    <td> Example 8 - Fun with Calendars </td>
+    <td> Demonstrates how a Holiday calendar can be used to exclude execution of jobs on a holiday </td>
+    </tr>
+    <tr>
+    <td> Example 9 - Job Listeners </td>
+    <td> Use job listeners to have one job trigger another job, building a simple workflow </td>
+    </tr>
+    <tr>
+    <td> Example 10 - Using Quartz Plug-Ins </td>
+    <td> Demonstrates the use of the XML Job Initialization plug-in as well as the History Logging plug-ins </td>
+    </tr>
+    <tr>
+    <td> Example 11 - Quartz Under High Load </td>
+    <td> Quartz can run a lot of jobs but see how thread pools can limit how many jobs can execute simultaneously </td>
+    </tr>
+    <tr>
+    <td> Example 12 - Remote Job Scheduling using RMI </td>
+    <td> Using Remote Method Invocation, a Quartz scheduler can be remotely scheduled by a client </td>
+    </tr>
+    <tr>
+    <td> Example 13 - Clustered Quartz </td>
+    <td> Demonstrates how Quartz can be used in a clustered environment and how Quartz can use the database to persist scheduling information </td>
+    </tr>
+    <tr>
+    <td> Example 14 - <a href="Example14.html">Trigger Priorities</a> </td>
+    <td> Demonstrates how Trigger priorities can be used to manage firing order for Triggers with the same fire time </td>
+    </tr>
+    <tr>
+    <td> Example 15 - TC Clustered Quartz  </td>
+    <td> Demonstrates how Quartz can be clustered with Terracotta, rather than with a database </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
       </article>
     </div>
 
@@ -324,7 +358,7 @@ as part of a distributed (XA) transaction.</p>
 
 <script type="text/javascript">
         $('#').addClass("active");
-        $('#site_mnu_about_features').addClass("active");
+        $('#').addClass("active");
 </script>
 
 

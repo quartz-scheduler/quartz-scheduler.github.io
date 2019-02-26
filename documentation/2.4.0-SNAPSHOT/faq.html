@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+  <title>Frequently Answered Questions about Quartz</title>
+
+  <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
+
+  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/2.4.0-SNAPSHOT/faq.html">
+  <link rel="alternate" type="application/rss+xml" title="Quartz Enterprise Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
+
+
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Global CSS -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/spacelab/bootstrap.min.css">
+
+
+<!--
+  <link rel="stylesheet" href="/plugins/highlight/styles/idea.css">
+  <script src="/plugins/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+-->
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.css"></script>
+
+  <link rel="stylesheet" href="/css/main.css">
+
+<!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', prettyPrint)</script>
+-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-131151-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+  
+</head>
+
+
+  <body>
+
+    
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="site-title" href="/"><img src="/images/logo-quartz-scheduler.png" style="margin-top:15px;margin-bottom:6px;"/></a>
+          <span style="vertical-align:bottom;color:gray;display:inline-block;margin-bottom:.4em;">By</span>
+          <a class="SAG-Logo" href="http://www.softwareag.com/corporate/products/terracotta"><img src="/images/SAG_Logo.png" style="margin-top:12px;margin-bottom:6px;height:1.5em;width:9em;"/></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li id="site_mnu_about"><a href="/overview/"><i class="fa fa-info-circle"></i> About</a></li>
+            <li id="site_mnu_docs"><a href="/documentation/"><i class="fa fa-book"></i> Docs</a></li>
+            <li id="site_mnu_download"><a href="/downloads/"><i class="fa fa-download"></i> Download</a></li>
+            <li id="site_mnu_community" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Community <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">We Love Contributors</li>
+                <li><a href="/documentation/2.4.0-SNAPSHOT/community.html"><i class="fa fa-code"></i> Contributing</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Forums</li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler-dev" target="_blank"><i class="fa fa-commenting"></i> Developers' Forum</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Source Code</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz"><i class="fa fa-code-fork"></i> GitHub</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Bug Tracking</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz/issues"><i class="fa fa-bug"></i> GitHub</a></li>
+                <li><a href="http://jira.terracotta.org/jira/browse/QTZ"><i class="fa fa-bug"></i> Jira (historical)</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+<!--            <li id="site_mnu_events"><a href="/events"><i class="fa fa-calendar"></i> News & Events</a></li> -->
+            <li><a href="/blog/"><i class="fa fa-rss-square"></i>  Blog</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<br/>
+<br/>
+<br/>
+
+
+    <div class="container-fluid">
+      <div id="contentTitle">
+        <h1>Frequently Answered Questions about Quartz</h1>
+      </div>
+      <div>
+        <br/>
+
+<div class="container-fluid">
+
+  <div class="row row-offcanvas row-offcanvas-left">
+
+    <!-- sidebar -->
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <ul class="nav">
+          <li id="site_mnu_docs_home" class="submenu"><a href="/documentation/">Documentation Home</a></li>
+          <li id="site_mnu_docs_downloads" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#downloads">Downloads</a></li>
+          <li id="site_mnu_docs_release" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#release-and-general-information">Release</a></li>
+          <li id="site_mnu_docs_user_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#users-guide">User’s Guide</a></li>
+          <li id="site_mnu_docs_dev_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#quartz-developers-guide">Quartz Developer’s Guide</a></li>
+          <li id="site_mnu_docs_more_help" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#more-help">More Help?</a></li>
+        </ul>
+    </div>
+
+    <!-- main area -->
+    <div class="col-xs-12 col-sm-9">
+      <header class="post-header">
+        
+        <h1 class="post-title">Frequently Answered Questions about Quartz</h1>
+        <hr/>
+        
+      </header>
+      <article class="post-content">
+        <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#general-questions">General Questions:</a></li>
+<li><a href="#miscellaneous-questions">Miscellaneous Questions</a></li>
+<li><a href="#questions-about-jobs">Questions About Jobs</a></li>
+<li><a href="#questions-about-jdbcjobstore">Questions About JDBCJobStore</a></li>
+<li><a href="#questions-about-transactions">Questions About Transactions</a></li>
+<li><a href="#questions-about-spring">Questions About Spring</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Frequently Answered Questions about Quartz</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="general-questions">General Questions:</h2>
+<div class="sectionbody">
+<div class="qlist qanda">
+<ol>
+<li>
+<p><em>What is Quartz?</em></p>
+<p>Quartz is a job scheduling library that can be integrated with, or used along side virtually any other software system. The term "job scheduler" seems to conjure different ideas for different people. As you read the tutorial, you should be able to get a firm idea of what we mean when we use this term, but in short, a job scheduler is a service component that is responsible for executing (or notifying) other software components when a pre-determined (scheduled) time arrives.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>See <a href="intro.adoc">Introduction</a> for more.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">What Isn’t Quartz?</dt>
+<dd>
+<p>Quartz is not a job queue - though it is often used as one, and can do a reasonable job of such at a small scale.</p>
+<div class="paragraph">
+<p>Quartz is not a grid computation engine - though simple, small scale usage as such can be achieved with effort.</p>
+</div>
+<div class="paragraph">
+<p>Quartz is not a job execution service for use by business personnel - it is a code library that can be easily embeded into applications that need the capability to schedule application-related tasks to occur in the future or on a recurring basis.</p>
+</div>
+</dd>
+<dt class="hdlist1">What is Quartz - From a Software Component View?</dt>
+<dd>
+<p>Quartz is distributed as a small java library (.jar file) that contains all of the core Quartz functionality. The main interface (API) to this functionality is the Scheduler interface. It provides simple operations such as scheduling/unscheduling jobs, starting/stopping/pausing the scheduler.</p>
+<div class="paragraph">
+<p>If you wish to schedule your own software components for execution they must implement the simple Job interface, which contains the method execute(). If you wish to have components notified when a scheduled fire-time arrives, then the components should implement either the TriggerListener or JobListener interface.</p>
+</div>
+<div class="paragraph">
+<p>The main Quartz 'process' can be started and ran within your own application, as a stand-alone application (with an RMI interface), or within a J2EE app. server to be used as a resource by your J2EE components.</p>
+</div>
+</dd>
+<dt class="hdlist1">Why not just use java.util.Timer?</dt>
+<dt class="hdlist1">Since JDK 1.3, Java has "built-in" timer capabilities, through the java.util.Timer and java.util.TimerTask classes - why would someone use Quartz rather than these standard features?</dt>
+<dd>
+<div class="paragraph">
+<p>There are many reasons! Here are a few:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Timers have no persistence mechanism.</p>
+</li>
+<li>
+<p>Timers have inflexible scheduling (only able to set start-time &amp; repeat interval, nothing based on dates, time of day, etc.)</p>
+</li>
+<li>
+<p>Timers don&#8217;t utilize a thread-pool (one thread per timer)</p>
+</li>
+<li>
+<p>Timers have no real management schemes - you&#8217;d have to write your own mechanism for being able to remember, organize and retrieve your tasks by name, etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;of course to some simple applications these features may not be important, in which case it may then be the right decision not to use Quartz.</p>
+</div>
+</dd>
+<dt class="hdlist1">What are the available alternatives to Quartz?</dt>
+<dd>
+<p>There are no known competing open source projects (there are a few other open source schedulers, but they are basically just Cron replacements written in Java).</p>
+<div class="paragraph">
+<p>Commercially, you will want to look at the well-regarded Flux scheduler.</p>
+</div>
+</dd>
+<dt class="hdlist1">How do I build the Quartz source?</dt>
+<dd>
+<p>Although Quartz ships "pre-built" many people like to make their own alterations and/or build the latest 'non-released' version of Quartz from source. To do this, follow the instructions in the <a href="build.adoc">build.adoc</a> documentation.</p>
+</dd>
+<dt class="hdlist1">How do I disable the update check?</dt>
+<dd>
+<p>Quartz contains an "update check" feature that connects to a server to check if there is a new version of Quartz available for download. This check runs asynchronously and does not affect startup/initialization time of Quartz, and it fails gracefully if the connection cannot be made. If the check runs, and an update is found, it will be reported as available in Quartz&#8217;s logs.</p>
+<div class="paragraph">
+<p>You can disable the update check with the Quartz config property "org.quartz.scheduler.skipUpdateCheck: true" or the system property "org.terracotta.quartz.skipUpdateCheck=true" (which you can set in your system environment or as a -D on the java command line). It is recommended that you disable the update check for production deployments.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="miscellaneous-questions">Miscellaneous Questions</h2>
+<div class="sectionbody">
+<div class="qlist qanda">
+<ol>
+<li>
+<p><em>How many jobs is Quartz capable of running?</em></p>
+<p>This is a tough question to answer&#8230;&#8203; the answer is basically "it depends".</p>
+<div class="paragraph">
+<p>I know you hate that answer, so here&#8217;s some information about what it depends "on".</p>
+</div>
+<div class="paragraph">
+<p>First off, the JobStore that you use plays a significant factor. The RAM-based JobStore is MUCH (1000x) faster than the JDBC-based JobStore. The speed of JDBC-JobStore depends almost entirely on the speed of the connection to your database, which data base system that you use, and what hardware the database is running on. Quartz actually does very little processing itself, nearly all of the time is spent in the database. Of course RAMJobStore has a more finite limit on how many Jobs and Triggers can be stored, as you&#8217;re sure to have less RAM than hard-drive space for a database. You may also look at the FAQ "How do I improve the performance of JDBC-JobStore?"</p>
+</div>
+<div class="paragraph">
+<p>So, the limiting factor of the number of Triggers and Jobs Quartz can "store" and monitor is really the amount of storage space available to the JobStore (either the amount of RAM or the amount of disk space).</p>
+</div>
+<div class="paragraph">
+<p>Now, aside from "how many can I store?" is the question of "how many jobs can Quartz be running at the same moment in time?"</p>
+</div>
+<div class="paragraph">
+<p>One thing that CAN slow down quartz itself is using a lot of listeners (TriggerListeners, JobListeners, and SchedulerListeners). The time spent in each listener obviously adds into the time spent "processing" a job&#8217;s execution, outside of actual execution of the job. This doesn&#8217;t mean that you should be terrified of using listeners, it just means that you should use them judiciously - don&#8217;t create a bunch of "global" listeners if you can really make more specialized ones. Also don&#8217;t do "expensive" things in the listeners, unless you really need to. Also be mindful that many plug-ins (such as the "history" plugin) are actually listeners.</p>
+</div>
+<div class="paragraph">
+<p>The actual number of jobs that can be running at any moment in time is limited by the size of the thread pool. If there are five threads in the pool, no more than five jobs can run at a time. Be careful of making a lot of threads though, as the JVM, Operating System, and CPU all have a hard time juggling lots of threads, and performance degrades as the system spends time managing threads. In most cases performance starts to tank as you get into the several hundreds of threads (or fewer if the code being executed on the threads is intensive). Be mindful that if you&#8217;re running within an application server, it probably has created at least a few dozen threads of its own!</p>
+</div>
+<div class="paragraph">
+<p>Aside from those factors, it really comes down to what your jobs DO. If your jobs take a long time to complete their work, and/or their work is very CPU-intensive, then you&#8217;re obviously not going to be able to run very many jobs at once, nor very many in a given span of time.</p>
+</div>
+<div class="paragraph">
+<p>Finally, if you just can&#8217;t get enough horse-power out of one Quartz instance, you can always load-balance many Quartz instances (on separate machines). Each will run the jobs out of the shared database on a first-come first-serve basis, as quickly as the triggers need fired.</p>
+</div>
+<div class="paragraph">
+<p>The clustering feature works best for scaling out long-running and/or cpu-intensive jobs (distributing the work-load over multiple nodes). If you need to scale out to support thousands of short-running (e.g 1 second) jobs, consider partitioning the set of jobs by using multiple distinct schedulers. Using one scheduler forces the use of a cluster-wide lock, a pattern that degrades performance as you add more clients.</p>
+</div>
+<div class="paragraph">
+<p>So here you are this far into the answer of "how many", and I still haven&#8217;t given you an actual number. And I really hate to, because of all of the variables mentioned above. So let me just say, there are installments of Quartz out there that are managing hundreds-of-thousands of Jobs and Triggers, and that are, at any given moment in time executing several dozens of jobs – without even utilizing Quartz&#8217;s load-balancing capabilities. With this in mind, most people should feel confident that they can get the performance out of Quartz that they need.</p>
+</div>
+</li>
+<li>
+<p><em>I&#8217;m having issues with using Quartz via RMI</em></p>
+<p>RMI can be a bit problematic, especially if you don&#8217;t have an understanding of how class loading via RMI works. I highly recommend reading all of the JavaDOC available about RMI, and strongly suggest you read the following references, dug up by a kind Quartz user (Mike Curwen)</p>
+<div class="paragraph">
+<p>An excellent description of RMI and codebase: <a href="http://www.kedwards.com/jini/codebase.html" class="bare">http://www.kedwards.com/jini/codebase.html</a>. One of the important points is to realize that "codebase" is used by the client!</p>
+</div>
+<div class="paragraph">
+<p>Quick info about security managers: <a href="http://gethelp.devx.com/techtips/java_pro/10MinuteSolutions/10min0500.asp" class="bare">http://gethelp.devx.com/techtips/java_pro/10MinuteSolutions/10min0500.asp</a>.</p>
+</div>
+<div class="paragraph">
+<p>The important 'take away' of the Java API is:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>RMI's class loader will not download any classes from remote locations if no security manager has been set.</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="questions-about-jobs">Questions About Jobs</h2>
+<div class="sectionbody">
+<div class="qlist qanda">
+<ol>
+<li>
+<p><em>How can I control the instantiation of Jobs?</em></p>
+<p>See org.quartz.spi.JobFactory and the org.quartz.Scheduler.setJobFactory(..) method.</p>
+</li>
+<li>
+<p><em>How do I keep a Job from being removed after it completes?</em></p>
+<div class="paragraph">
+<p>Set the property JobDetail.setDurability(true) - which instructs Quartz not to delete the Job when it becomes an "orphan" (when the Job not longer has a Trigger referencing it).</p>
+</div>
+</li>
+<li>
+<p><em>How do I keep a Job from firing concurrently?</em></p>
+<p>Annotate your job with <code>@DisallowConcurrentExecution</code> and/or <code>@PersistJobDataAfterExecution</code>.</p>
+</li>
+<li>
+<p><em>How do I stop a Job that is currently executing?</em></p>
+<p>See the org.quartz.InterruptableJob interface, and the Scheduler.interrupt(String, String) method.
+Questions About Triggers</p>
+</li>
+<li>
+<p><em>How do I chain Job execution? Or, how do I create a workflow?</em></p>
+<p>There currently is no "direct" or "free" way to chain triggers with Quartz. However there are several ways you can accomplish it without much effort. Below is an outline of a couple approaches:</p>
+<div class="paragraph">
+<p>One way is to use a listener (i.e. a TriggerListener, JobListener or SchedulerListener) that can notice the completion of a job/trigger and then immediately schedule a new trigger to fire. This approach can get a bit involved, since you&#8217;ll have to inform the listener which job follows which - and you may need to worry about persistence of this information. See the listener org.quartz.listeners.JobChainingJobListener which ships with Quartz - as it already has some of this functionality.</p>
+</div>
+<div class="paragraph">
+<p>Another way is to build a Job that contains within its JobDataMap the name of the next job to fire, and as the job completes (the last step in its execute() method) have the job schedule the next job. Several people are doing this and have had good luck. Most have made a base (abstract) class that is a Job that knows how to get the job name and group out of the JobDataMap using pre-defined keys (constants) and contains code to schedule the identified job. This abstract Job&#8217;s implementation of execute() delegates to an abstract template method such as "doWork()" (where the extending Job class&#8217;s real work goes) and then it contains the code for scheduling the follow-up job. Then they simply make extensions of this class that included the work the job should do. The usage of 'durable' jobs, or the overloaded addJob(JobDetail, boolean, boolean) method (added in Quartz 2.2) helps the application define all the jobs at once with their proper data, without yet creating triggers to fire them (other than one trigger to fire the first job in the chain).</p>
+</div>
+<div class="paragraph">
+<p>In the future, Quartz will provide a much cleaner way to do this, but until then, you&#8217;ll have to use one of the above approaches, or think of yet another that works better for you.</p>
+</div>
+</li>
+<li>
+<p><em>Why isn&#8217;t my trigger firing?</em></p>
+<p>The most common reason for this is not having called Scheduler.start(), which tells the scheduler to start firing triggers.</p>
+<div class="paragraph">
+<p>The second most common reason is that the trigger or trigger group has been paused.
+Daylight Saving Time and Triggers</p>
+</div>
+<div class="paragraph">
+<p>CronTrigger and SimpleTrigger each handle daylight savings time in their own way - each in the way that is intuitive to the trigger type.</p>
+</div>
+<div class="paragraph">
+<p>First, as a review of what daylight savings time is, please read this resource: <a href="https://secure.wikimedia.org/wikipedia/en/wiki/Daylight_saving_time_around_the_world" class="bare">https://secure.wikimedia.org/wikipedia/en/wiki/Daylight_saving_time_around_the_world</a>. Some readers may be unaware that the rules are different for different nations/contents. For example, the 2005 daylight savings time started in the United States on April 3, but in Egypt on April 29. It is also important to know that not only the dates are different for different locals, but the time of the shift is different as well. Many places shift at 2:00 am, but others shift time at 1:00 am, others at 3:00 am, and still others right at midnight.</p>
+</div>
+<div class="paragraph">
+<p>SimpleTrigger allows you to schedule jobs to fire every N milliseconds. As such, it has to do nothing in particular with respect to daylight savings time in order to "stay on schedule" - it simply keeps firing every N milliseconds. Regardless your SimpleTrigger is firing every 10 seconds, or every 15 minutes, or every hour or every 24 hours it will continue to do so. However the implication of this which confuses some users is that if your SimpleTrigger is firing say every 12 hours, before daylight savings switches it may be firing at what appears to be 3:00 am and 3:00 pm, but after daylight savings 4:00 am and 4:00 pm. This is not a bug - the trigger has kept firing exacly every N milliseconds, it just that the "name" of that time that humans impose on that moment has changed.</p>
+</div>
+<div class="paragraph">
+<p>CronTrigger allows you to schedule jobs to fire at certain moments with respect to a "Gregorian calendar". Hence, if you create a trigger to fire every day at 10:00 am, before and after daylight savings time switches it will continue to do so. However, depending on whether it was the Spring or Autumn daylight savings event, for that particular Sunday, the actual time interval between the firing of the trigger on Sundary morning at 10:00 am since its firing on Saturday morning at 10:00 am will not be 24 hours, but will instead be 23 or 25 hours respectively.</p>
+</div>
+<div class="paragraph">
+<p>There is one additional point users must understand about CronTrigger with respect to daylight savings. This is that you should take careful thought about creating schedules that fire between midnight and 3:00 am (the critical window of time depends on your trigger&#8217;s locale, as explained above). The reason is that depending on your trigger&#8217;s schedule, and the particular daylight event, the trigger may be skipped or may appear to not fire for an hour or two. As examples, say you are in the United States, where daylight savings events occur at 2:00 am. If you have a CronTrrigger that fires every day at 2:15 am, then on the day of the beginning of daylight savings time the trigger will be skipped, since, 2:15 am never occurs that day. If you have a CronTrigger that fires every 15 minutes of every hour of every day, then on the day daylight savings time ends you will have an hour of time for which no triggerings occur, because when 2:00 am arrives, it will become 1:00 am again, however all of the firings during the one o&#8217;clock hour have already occurred, and the trigger&#8217;s next fire time was set to 2:00 am - hence for the next hour no triggerings will occur.</p>
+</div>
+<div class="paragraph">
+<p>In summary, all of this makes perfect sense, and should be easy to remember if you keep these two rules in mind:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SimpleTrigger ALWAYS fires exactly every N seconds, with no relation to the time of day.
+CronTrigger ALWAYS fires at a given time of day and then computes its next time to fire. If that time does not occur on a given day, the trigger will be skipped. If the time occurs twice in a given day, it only fires once, because after firing on that time the first time, it computes the next time of day to fire on.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other trigger types that are based on sliding along a calendar (rather than exact amounts of time), such as CalenderIntervalTrigger, will be similarly affected - but rather than missing a firing, or firing twice, may end up having it&#8217;s fire time shifted by an hour.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="questions-about-jdbcjobstore">Questions About JDBCJobStore</h2>
+<div class="sectionbody">
+<div class="qlist qanda">
+<ol>
+<li>
+<p><em>How do I improve the performance of JDBC-JobStore?</em></p>
+<p>There are a few known ways to speed up JDBC-JobStore, only one of which is very practical.</p>
+<div class="paragraph">
+<p>First, the obvious, but not-so-practical:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Buy a better (faster) network between the machine that runs Quartz, and the machine that runs your RDBMS.</p>
+</li>
+<li>
+<p>Buy a better (more powerful) machine to run your database on.</p>
+</li>
+<li>
+<p>Buy a better RDBMS.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now for something simple, but effective: Build indexes on the Quartz tables.</p>
+</div>
+<div class="paragraph">
+<p>Most database systems will automatically put indexes on the primary-key fields, many will also automatically do it for the foreign-key field. Make sure yours does this, or make the indexes on all key fields of every table manually.</p>
+</div>
+<div class="paragraph">
+<p>Next, manually add some additional indexes: most important to index are the TRIGGER table&#8217;s "next_fire_time" and "state" fields. Last (but not as important), add indexes to every column on the FIRED_TRIGGERS table.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>create index idx_qrtz_t_next_fire_time on qrtz_triggers(NEXT_FIRE_TIME);
+create index idx_qrtz_t_state on qrtz_triggers(TRIGGER_STATE);
+create index idx_qrtz_t_nf_st on qrtz_triggers(TRIGGER_STATE,NEXT_FIRE_TIME);
+create index idx_qrtz_ft_trig_name on qrtz_fired_triggers(TRIGGER_NAME);
+create index idx_qrtz_ft_trig_group on qrtz_fired_triggers(TRIGGER_GROUP);
+create index idx_qrtz_ft_trig_name on qrtz_fired_triggers(TRIGGER_NAME);
+create index idx_qrtz_ft_trig_n_g on \
+    qrtz_fired_triggers(TRIGGER_NAME,TRIGGER_GROUP);
+create index idx_qrtz_ft_trig_inst_name on qrtz_fired_triggers(INSTANCE_NAME);
+create index idx_qrtz_ft_job_name on qrtz_fired_triggers(JOB_NAME);
+create index idx_qrtz_ft_job_group on qrtz_fired_triggers(JOB_GROUP);
+create index idx_qrtz_t_next_fire_time_misfire on \
+    qrtz_triggers(MISFIRE_INSTR,NEXT_FIRE_TIME);
+create index idx_qrtz_t_nf_st_misfire on \
+    qrtz_triggers(MISFIRE_INSTR,NEXT_FIRE_TIME,TRIGGER_STATE);
+create index idx_qrtz_t_nf_st_misfire_grp on \
+    qrtz_triggers(MISFIRE_INSTR,NEXT_FIRE_TIME,TRIGGER_GROUP,TRIGGER_STATE);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The clustering feature works best for scaling out long-running and/or cpu-intensive jobs (distributing the work-load over multiple nodes). If you need to scale out to support thousands of short-running (e.g 1 second) jobs, consider partitioning the set of jobs by using multiple distinct schedulers (and hence multiple sets of tables (with distinct prefixes)). Using one scheduler forces the use of a cluster-wide lock, a pattern that degrades performance as you add more clients.</p>
+</div>
+</li>
+<li>
+<p><em>My DB Connections don&#8217;t recover properly if the database server is restarted.</em></p>
+<p>If you&#8217;re having Quartz create the connection data source (by specifying the connection parameters in the quartz properties file) make sure you have a connection validation query specified, such as:</p>
+<div class="listingblock">
+<div class="content">
+<pre>org.quartz.dataSource.myDS.validationQuery=select 0 from dual</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This particular query is extremely efficient for Oracle. For other databases, you&#8217;ll need to think of an efficient query that always works as long as the connection is good.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re datasource is managed by your application server, make sure the datasource is configured in such a way that it can detect failed connections.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="questions-about-transactions">Questions About Transactions</h2>
+<div class="sectionbody">
+<div class="qlist qanda">
+<ol>
+<li>
+<p><em>I&#8217;m using JobStoreCMT and I&#8217;m seeing deadlocks, what can I do?</em></p>
+<p>JobStoreCMT is in heavy use, under heavy load by many people. It is believed to be free of bugs that can cause deadlock. However, every now and then we get complaints about deadlocks. In all cases thus far, the problem has turned out to be "user error", thus the list below is some things for you to check if you are experiencing deadlocks.</p>
+<div class="paragraph">
+<p>Some databases falsely detect deadlocks when a tx takes a long time.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Make sure you have put indexes on your tables (see improving performance of JDBCJobStore).</p>
+</li>
+<li>
+<p>Make sure you have at least number-of-threads-in-thread-pool + 2 connections in your datasources.</p>
+</li>
+<li>
+<p>Make sure you have both a managed and non-managed datasource configured for Quartz to use.</p>
+</li>
+<li>
+<p>Make sure that all work you do with the Scheduler interface is done from within a transaction. Accomplish this by using the Scheduler within a SessionBean that has its tx settings "Required" and "Container". Or within a MessageDrivenBean with similar settings.</p>
+</li>
+<li>
+<p>Finally, start a UserTransaction yourself, and commit the work when done.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If your Jobs' execute() methods use the Scheduler, make sure a transaction is in progress by using a UserTransaction or by setting the Quartz config property "org.quartz.scheduler.wrapJobExecutionInUserTransaction=true".</p>
+</div>
+</li>
+<li>
+<p><em>I&#8217;m using Oracle RAC and I&#8217;m seeing deadlocks, what can I do?</em></p>
+<p>Oracle RAC has many limitations relating to transactions and locking. Quartz is known to work fine with Oracle RAC if you&#8217;re careful about the setup. The QTZ-149 issue contains some discussion and links that may help you if you&#8217;re having issues.
+Questions about Clustering, (Scaling and High-Availability) Features</p>
+</li>
+<li>
+<p><em>What clustering capabilities exist with Quartz?</em></p>
+<div class="paragraph">
+<p>Quartz ships with well-proven clustering capabilities that offer scaling and high availability features. You can read about these features in the Quartz Configuration Reference.</p>
+</div>
+<div class="paragraph">
+<p>Additional clustering features that do not rely upon a backing database are available (free of cost) from Terracotta.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="questions-about-spring">Questions About Spring</h2>
+<div class="sectionbody">
+<div class="qlist qanda">
+<ol>
+<li>
+<p><em>I&#8217;m using Quartz via Spring&#8217;s scheduler wrappers, and I need help&#8230;&#8203;</em></p>
+<p>Check with the Spring community&#8230;&#8203;</p>
+</li>
+<li>
+<p><em>I&#8217;m seeing triggers stuck in the ACQUIRED state, or other weird data problems.</em></p>
+<p>Spring defaults the Quartz property "org.quartz.jobStore.dontSetAutoCommitFalse" to "true" - which means Quartz will not turn off auto-commit mode on the database connections that it uses. This is the opposite of Quartz&#8217;s own default for this setting. If your connection is defaulting to have auto-commit on, then you&#8217;ll run into all sorts of strange problems relating to data inconsistencies&#8201;&#8212;&#8201;the most common symptom being triggers that are "stuck" in the "ACQUIRED" state. Fix this by explicitly setting the property to "false".</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+      </article>
+    </div>
+
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+    <br/>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Related Projects:<br/>
+        <a href="http://www.terracotta.org"><img src="/images/Terracotta_Logo_sm.png" style="max-height: 20px;"></a><br/>
+        <a href="http://www.ehcache.org"><img src="/images/ehcache.png" style="max-height: 44px;"></a>
+
+        <!--
+        <ul class="contact-list">
+          <li>Quartz Enterprise Job Scheduler</li>
+          <li><a href="mailto:tc-oss@softwareag.com">tc-oss@softwareag.com</a></li>
+        </ul>
+      -->
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/quartz-scheduler">
+              <i class="fa fa-github"></i> GitHub
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/terracottatech">
+              <i class="fa fa-twitter"></i> Twitter
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.facebook.com/Terracotta">
+              <i class="fa fa-facebook"></i> Facebook
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.linkedin.com/company/terracotta">
+              <i class="fa fa-linkedin"></i> LinkedIn
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+    <div class="footer-col  footer-col-3">
+      <a href="/downloads/"><i class="fa fa-download"></i> Download Now</a>
+      <br/>
+      <a href="/documentation/"><i class="fa fa-book"></i> Documentation</a>
+      <br/>
+      <a href="/community/"><i class="fa fa-users"></i> Join the Community</a>
+    </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <hr/>
+        <a class="SAG-Logo" href="http://www.softwareag.com/corporate/products/terracotta"><img src="/images/SAG_Logo.png" style="height:1.5em;width:9em;"/></a>
+        <div class="footer-text">
+          <em class="copyleft">Quartz Job Scheduler is Open Source and freely available under the Apache 2 License</em>
+          <br/>
+          <em class="copyright">&copy; Terracotta, Inc., a wholly-owned subsidiary of Software AG USA, Inc. All rights reserved.</em>
+        </div>
+    </div>
+  </div>
+
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+
+<!--  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"/> -->
+
+<script type="text/javascript">
+        $('#').addClass("active");
+        $('#').addClass("active");
+</script>
+
+
+  </body>
+
+</html>

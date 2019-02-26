@@ -96,7 +96,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Community <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">We Love Contributors</li>
-                <li><a href="/community/"><i class="fa fa-code"></i> Contributing</a></li>
+                <li><a href="/documentation/2.4.0-SNAPSHOT/community.html"><i class="fa fa-code"></i> Contributing</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Forums</li>
                 <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
@@ -113,7 +113,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
 <!--            <li id="site_mnu_events"><a href="/events"><i class="fa fa-calendar"></i> News & Events</a></li> -->
-            <li><a href="http://blog.terracotta.org"><i class="fa fa-rss-square"></i>  Blog</a></li>
+            <li><a href="/blog/"><i class="fa fa-rss-square"></i>  Blog</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -138,78 +138,38 @@
   </header>
 
   <article class="post-content">
-    <h2 id="directmanual-downloads">Direct/Manual Downloads</h2>
-
-<p>You can download the full distribution (with examples, source, dependencies, doc, etc.).</p>
-
-<p>Or if you are a Maven user you can add the dependencies to your existing project.</p>
-
-<h3 id="latest-release">Latest release</h3>
-
-<h4 id="full-distribution">Full Distribution</h4>
-
-<p><i class="fa fa-download"></i> <a href="http://d2zwv9pap9ylyd.cloudfront.net/quartz-2.2.3-distribution.tar.gz">Quartz 2.2.3</a>  .tar.gz</p>
-
-<p>For more information on this release, see the <a href="https://jira.terracotta.org/jira/secure/ReleaseNote.jspa?projectId=10282&amp;version=11041">release notes</a>.</p>
-
-<h4 id="quartz-22x-maven-snippets">Quartz 2.2.x Maven Snippets</h4>
-
-<p>To include Quartz 2.2.x in your project, use:</p>
-
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">  &lt;dependency&gt;
-    &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;
-    &lt;artifactId&gt;quartz&lt;/artifactId&gt;
-    &lt;version&gt;2.2.1&lt;/version&gt;
-  &lt;/dependency&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;
-    &lt;artifactId&gt;quartz-jobs&lt;/artifactId&gt;
-    &lt;version&gt;2.2.1&lt;/version&gt;
-  &lt;/dependency&gt;   </code></pre>
-
-<p><em>Note: Be sure to substitute the version number above with the version number of Quartz that you want to use.</em></p>
-
-<p>–</p>
-
-<h3 id="previous-releases">Previous releases</h3>
-
-<h4 id="full-distributions">Full Distributions</h4>
-
-<p><i class="fa fa-download"></i> <a href="http://d2zwv9pap9ylyd.cloudfront.net/quartz-2.1.7.tar.gz">Quartz 2.1.7</a>  .tar.gz</p>
-
-<p><i class="fa fa-download"></i> <a href="http://d2zwv9pap9ylyd.cloudfront.net/quartz-2.0.2.tar.gz">Quartz 2.0.2</a>  .tar.gz</p>
-
-<p><i class="fa fa-download"></i> <a href="http://d2zwv9pap9ylyd.cloudfront.net/quartz-1.8.6.tar.gz">Quartz 1.8.6</a>  .tar.gz</p>
-
-<p>A full <a href="https://jira.terracotta.org/jira/browse/QTZ/?selectedTab=com.atlassian.jira.jira-projects-plugin:changelog-panel">change log</a> is available..</p>
-
-<h4 id="pre-220-maven-snippets">Pre-2.2.0 Maven Snippets</h4>
-
-<p>To include older Quartz versions in your project, use:</p>
-
-<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">  &lt;dependency&gt;
-    &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;
-    &lt;artifactId&gt;quartz&lt;/artifactId&gt;
-    &lt;version&gt;2.1.7&lt;/version&gt;
-  &lt;/dependency&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;
-    &lt;artifactId&gt;quartz-oracle&lt;/artifactId&gt;
-    &lt;version&gt;2.1.7&lt;/version&gt;
-  &lt;/dependency&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;
-    &lt;artifactId&gt;quartz-weblogic&lt;/artifactId&gt;
-    &lt;version&gt;2.1.7&lt;/version&gt;
-  &lt;/dependency&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;org.quartz-scheduler&lt;/groupId&gt;
-    &lt;artifactId&gt;quartz-jboss&lt;/artifactId&gt;
-    &lt;version&gt;2.1.7&lt;/version&gt;
-  &lt;/dependency&gt;   </code></pre>
-
-<p><em>Note: Be sure to substitute the version number above with the version number of Quartz that you want to use.</em></p>
-
+    <div class="sect1">
+<h2 id="latest-download">Latest Download</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See <a href="/documentation/2.4.0-SNAPSHOT/downloads.html">Latest Release Download</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="previous-releases">Previous Releases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Full Distributions</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://d2zwv9pap9ylyd.cloudfront.net/quartz-2.2.3-distribution.tar.gz">Quartz 2.2.3 .tar.gz</a></p>
+</li>
+<li>
+<p><a href="http://d2zwv9pap9ylyd.cloudfront.net/quartz-2.1.7-distribution.tar.gz">Quartz 2.1.7 .tar.gz</a></p>
+</li>
+<li>
+<p><a href="http://d2zwv9pap9ylyd.cloudfront.net/quartz-2.0.2-distribution.tar.gz">Quartz 2.0.2 .tar.gz</a></p>
+</li>
+<li>
+<p><a href="http://d2zwv9pap9ylyd.cloudfront.net/quartz-1.8.6-distribution.tar.gz">Quartz 1.8.6 .tar.gz</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
   </article>
 
 </div>
