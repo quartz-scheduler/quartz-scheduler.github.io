@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+  <title>What's New</title>
+
+  <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
+
+  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/quartz-2.2.2/new-in-quartz-2_2.html">
+  <link rel="alternate" type="application/rss+xml" title="Quartz Enterprise Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
+
+
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Global CSS -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/spacelab/bootstrap.min.css">
+
+
+<!--
+  <link rel="stylesheet" href="/plugins/highlight/styles/idea.css">
+  <script src="/plugins/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+-->
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.css"></script>
+
+  <link rel="stylesheet" href="/css/main.css">
+
+<!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', prettyPrint)</script>
+-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-131151-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+  
+</head>
+
+
+  <body>
+
+    
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="site-title" href="/"><img src="/images/logo-quartz-scheduler.png" style="margin-top:15px;margin-bottom:6px;"/></a>
+          <span style="vertical-align:bottom;color:gray;display:inline-block;margin-bottom:.4em;">By</span>
+          <a class="SAG-Logo" href="http://www.softwareag.com/corporate/products/terracotta"><img src="/images/SAG_Logo.png" style="margin-top:12px;margin-bottom:6px;height:1.5em;width:9em;"/></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li id="site_mnu_about"><a href="/overview/"><i class="fa fa-info-circle"></i> About</a></li>
+            <li id="site_mnu_docs"><a href="/documentation/"><i class="fa fa-book"></i> Docs</a></li>
+            <li id="site_mnu_download"><a href="/downloads/"><i class="fa fa-download"></i> Download</a></li>
+            <li id="site_mnu_community" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Community <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">We Love Contributors</li>
+                <li><a href="/documentation/2.4.0-SNAPSHOT/community.html"><i class="fa fa-code"></i> Contributing</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Forums</li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler-dev" target="_blank"><i class="fa fa-commenting"></i> Developers' Forum</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Source Code</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz"><i class="fa fa-code-fork"></i> GitHub</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Bug Tracking</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz/issues"><i class="fa fa-bug"></i> GitHub</a></li>
+                <li><a href="http://jira.terracotta.org/jira/browse/QTZ"><i class="fa fa-bug"></i> Jira (historical)</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+<!--            <li id="site_mnu_events"><a href="/events"><i class="fa fa-calendar"></i> News & Events</a></li> -->
+            <li><a href="/blog/"><i class="fa fa-rss-square"></i>  Blog</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<br/>
+<br/>
+<br/>
+
+
+    <div class="container-fluid">
+      <div id="contentTitle">
+        <h1>What's New</h1>
+      </div>
+      <div>
+        <br/>
+
+<div class="container-fluid">
+
+  <div class="row row-offcanvas row-offcanvas-left">
+
+    <!-- sidebar -->
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <ul class="nav">
+          <li id="site_mnu_docs_home" class="submenu"><a href="/documentation/">Documentation Home</a></li>
+          <li id="site_mnu_docs_downloads" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#downloads">Downloads</a></li>
+          <li id="site_mnu_docs_release" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#release-and-general-information">Release</a></li>
+          <li id="site_mnu_docs_user_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#users-guide">User’s Guide</a></li>
+          <li id="site_mnu_docs_dev_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#quartz-developers-guide">Quartz Developer’s Guide</a></li>
+          <li id="site_mnu_docs_more_help" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#more-help">More Help?</a></li>
+        </ul>
+    </div>
+
+    <!-- main area -->
+    <div class="col-xs-12 col-sm-9">
+      <header class="post-header">
+        
+        <h1 class="post-title">Quartz What's New </h1>
+        <hr/>
+        
+      </header>
+      <article class="post-content">
+        <h1 id="what’s-new-in-quartz-scheduler-2.2">What’s New In Quartz Scheduler 2.2</h1><div id="toc-container">
+   <table class="toc" id="toc">
+      <tbody>
+         <tr>
+            <td>
+               <ul>
+                  <li class="toc_level-1 toc_section-1">
+                     <a href="#what’s-new-in-quartz-scheduler-2.2">
+                        <span class="toctext">What’s New In Quartz Scheduler 2.2</span>
+                     </a>
+                     <ul>
+                        <li class="toc_level-2 toc_section-2">
+                           <a href="#api-changes-with-2.2.0-(including-some-minor-backward-compatibility-breakage)">
+                              <span class="toctext">API Changes with 2.2.0 (including some minor backward compatibility breakage)</span>
+                           </a>
+                        </li>
+                        <li class="toc_level-2 toc_section-3">
+                           <a href="#new-features-in-2.2.0">
+                              <span class="toctext">New Features in 2.2.0</span>
+                           </a>
+                        </li>
+                        <li class="toc_level-2 toc_section-4">
+                           <a href="#miscellaneous-with-2.2.0">
+                              <span class="toctext">Miscellaneous with 2.2.0</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+
+<p>We’d like to express thanks to the community contributors that provided ideas and patches for much of the work contained in this release!</p>
+
+<h2 id="api-changes-with-2.2.0-(including-some-minor-backward-compatibility-breakage)">API Changes with 2.2.0 (including some minor backward compatibility breakage)</h2>
+
+<ul>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-292">QTZ-292</a> - Scheduler interface : in the method scheduleJobs , the triggers should be part of a Set instead of a List</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-304">QTZ-304</a> - Scheduler#scheduleJobs API change to support generics and avoid cast</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-366">QTZ-366</a> - Deleted the long-deprecated CloudscapeDelegate</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-212">QTZ-212</a> - Add schedulerStarting() method to SchedulerListener interface</li>
+  <li>
+    <p><a href="https://jira.terracotta.org/jira/browse/QTZ-225">QTZ-225</a> - Make the Scheduler’s ClassLoadHelper available to plugins when they are initialized</p>
+  </li>
+  <li>For those using JDBC JobStore, there is a schema change that requires the addition of a column to the fired_triggers table, you can add such with a SQL statement such as this (with slight variants on data type needed depending upon your database flavor):
+    <ul>
+      <li>for oracle: ALTER TABLE QRTZ_FIRED_TRIGGERS ADD COLUMN SCHED_TIME NUMBER(13) NOT NULL;</li>
+      <li>for postgresql:  ALTER TABLE QRTZ_FIRED_TRIGGERS ADD COLUMN SCHED_TIME BIGINT NOT NULL;</li>
+      <li>for MySql:  ALTER TABLE QRTZ_FIRED_TRIGGERS ADD COLUMN SCHED_TIME BIGINT(13) NOT NULL;</li>
+      <li>etc.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="new-features-in-2.2.0">New Features in 2.2.0</h2>
+
+<ul>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-370">QTZ-370</a> - Ability to override default transaction timeout when beginning new UserTransaction</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-323">QTZ-323</a> - Ability to override worker thread names (when using SimpleThreadPool)</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-79">QTZ-79</a> - Improvements to the out-of-the-box SendMailJob</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-121">QTZ-121</a> - Create an EJB Job invoker that supports EJB3</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-267">QTZ-267</a> - Add new Scheduler method: scheduleJob(JobDetail job, Set<trigger> trigger) to schedule multiple triggers for a job all at once.</trigger></li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-272">QTZ-272</a> - Add initialize() to ConnectionProvider interface</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-275">QTZ-275</a> - Allow ‘triggerless’ initial storing of non-durable jobs.</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-315">QTZ-315</a> - Improvements for Job Recovery Information</li>
+  <li><a href="https://jira.terracotta.org/jira/browse/QTZ-154">QTZ-154</a> - OSGi support</li>
+</ul>
+
+<h2 id="miscellaneous-with-2.2.0">Miscellaneous with 2.2.0</h2>
+
+<ul>
+  <li>
+    <p>The Quartz library is now distributed only as two jar files:  one with all Quartz functionality, one with the out-of-the-box jobs (see <a href="https://jira.terracotta.org/jira/browse/QTZ-378">QTZ-378</a>)</p>
+  </li>
+  <li>
+    <p>Quartz now requires JDK 1.6 or newer (<a href="https://jira.terracotta.org/jira/browse/QTZ-286">QTZ-286</a>)</p>
+  </li>
+  <li>Performance improvements, including:
+    <ul>
+      <li>Improvements to some select statements in JDBC JobStore</li>
+    </ul>
+  </li>
+  <li>
+    <p>Some internal SPI/interface refactorings (cleanups) such as on DriverDelegate and its subclasses, the Semaphore class, etc.</p>
+  </li>
+  <li>Various bug fixes, for complete listing see the release notes from Jira: <a href="https://jira.terracotta.org/jira/secure/ReleaseNote.jspa?projectId=10282&amp;version=11041">https://jira.terracotta.org/jira/secure/ReleaseNote.jspa?projectId=10282&amp;version=11041</a></li>
+</ul>
+
+      </article>
+    </div>
+
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+    <br/>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Related Projects:<br/>
+        <a href="http://www.terracotta.org"><img src="/images/Terracotta_Logo_sm.png" style="max-height: 20px;"></a><br/>
+        <a href="http://www.ehcache.org"><img src="/images/ehcache.png" style="max-height: 44px;"></a>
+
+        <!--
+        <ul class="contact-list">
+          <li>Quartz Enterprise Job Scheduler</li>
+          <li><a href="mailto:tc-oss@softwareag.com">tc-oss@softwareag.com</a></li>
+        </ul>
+      -->
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/quartz-scheduler">
+              <i class="fa fa-github"></i> GitHub
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/terracottatech">
+              <i class="fa fa-twitter"></i> Twitter
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.facebook.com/Terracotta">
+              <i class="fa fa-facebook"></i> Facebook
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.linkedin.com/company/terracotta">
+              <i class="fa fa-linkedin"></i> LinkedIn
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+    <div class="footer-col  footer-col-3">
+      <a href="/downloads/"><i class="fa fa-download"></i> Download Now</a>
+      <br/>
+      <a href="/documentation/"><i class="fa fa-book"></i> Documentation</a>
+      <br/>
+      <a href="/community/"><i class="fa fa-users"></i> Join the Community</a>
+    </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <hr/>
+        <a class="SAG-Logo" href="http://www.softwareag.com/corporate/products/terracotta"><img src="/images/SAG_Logo.png" style="height:1.5em;width:9em;"/></a>
+        <div class="footer-text">
+          <em class="copyleft">Quartz Job Scheduler is Open Source and freely available under the Apache 2 License</em>
+          <br/>
+          <em class="copyright">&copy; Terracotta, Inc., a wholly-owned subsidiary of Software AG USA, Inc. All rights reserved.</em>
+        </div>
+    </div>
+  </div>
+
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+
+<!--  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"/> -->
+
+<script type="text/javascript">
+        $('#').addClass("active");
+        $('#site_mnu_docs_new_in').addClass("active");
+</script>
+
+
+  </body>
+
+</html>

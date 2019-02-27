@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+  <title>Examples</title>
+
+  <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
+
+  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/quartz-2.2.2/examples/Example1.html">
+  <link rel="alternate" type="application/rss+xml" title="Quartz Enterprise Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
+
+
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Global CSS -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/spacelab/bootstrap.min.css">
+
+
+<!--
+  <link rel="stylesheet" href="/plugins/highlight/styles/idea.css">
+  <script src="/plugins/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+-->
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/prettify.css"></script>
+
+  <link rel="stylesheet" href="/css/main.css">
+
+<!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', prettyPrint)</script>
+-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-131151-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+  
+</head>
+
+
+  <body>
+
+    
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="site-title" href="/"><img src="/images/logo-quartz-scheduler.png" style="margin-top:15px;margin-bottom:6px;"/></a>
+          <span style="vertical-align:bottom;color:gray;display:inline-block;margin-bottom:.4em;">By</span>
+          <a class="SAG-Logo" href="http://www.softwareag.com/corporate/products/terracotta"><img src="/images/SAG_Logo.png" style="margin-top:12px;margin-bottom:6px;height:1.5em;width:9em;"/></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li id="site_mnu_about"><a href="/overview/"><i class="fa fa-info-circle"></i> About</a></li>
+            <li id="site_mnu_docs"><a href="/documentation/"><i class="fa fa-book"></i> Docs</a></li>
+            <li id="site_mnu_download"><a href="/downloads/"><i class="fa fa-download"></i> Download</a></li>
+            <li id="site_mnu_community" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Community <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">We Love Contributors</li>
+                <li><a href="/documentation/2.4.0-SNAPSHOT/community.html"><i class="fa fa-code"></i> Contributing</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Forums</li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler-dev" target="_blank"><i class="fa fa-commenting"></i> Developers' Forum</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Source Code</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz"><i class="fa fa-code-fork"></i> GitHub</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Bug Tracking</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz/issues"><i class="fa fa-bug"></i> GitHub</a></li>
+                <li><a href="http://jira.terracotta.org/jira/browse/QTZ"><i class="fa fa-bug"></i> Jira (historical)</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+<!--            <li id="site_mnu_events"><a href="/events"><i class="fa fa-calendar"></i> News & Events</a></li> -->
+            <li><a href="/blog/"><i class="fa fa-rss-square"></i>  Blog</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<br/>
+<br/>
+<br/>
+
+
+    <div class="container-fluid">
+      <div id="contentTitle">
+        <h1>Examples</h1>
+      </div>
+      <div>
+        <br/>
+
+<div class="container-fluid">
+
+  <div class="row row-offcanvas row-offcanvas-left">
+
+    <!-- sidebar -->
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <ul class="nav">
+          <li id="site_mnu_docs_home" class="submenu"><a href="/documentation/">Documentation Home</a></li>
+          <li id="site_mnu_docs_downloads" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#downloads">Downloads</a></li>
+          <li id="site_mnu_docs_release" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#release-and-general-information">Release</a></li>
+          <li id="site_mnu_docs_user_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#users-guide">User’s Guide</a></li>
+          <li id="site_mnu_docs_dev_guide" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#quartz-developers-guide">Quartz Developer’s Guide</a></li>
+          <li id="site_mnu_docs_more_help" class="submenu"><a href="/documentation/2.4.0-SNAPSHOT/index.html#more-help">More Help?</a></li>
+        </ul>
+    </div>
+
+    <!-- main area -->
+    <div class="col-xs-12 col-sm-9">
+      <header class="post-header">
+        
+        <h1 class="post-title">Quartz Examples </h1>
+        <hr/>
+        
+      </header>
+      <article class="post-content">
+        <div class="secNavPanel">
+          <a href=".">Contents</a> |
+          <a href="Example3.html">Next&nbsp;&rsaquo;</a>
+</div>
+
+<h2 id="Example1-Overview">Example 1 - Your First Quartz Program</h2>
+<p>This example is designed to demonstrate how to get up and running with Quartz.   This example will fire off a simple job that says “Hello World”.</p>
+
+<p>The program will perform the following actions:</p>
+
+<ul>
+  <li>Start up the Quartz Scheduler</li>
+  <li>Schedule a job to run at the next even minute</li>
+  <li>Wait for 90 seconds to give Quartz a chance to run the job</li>
+  <li>Shut down the Scheduler</li>
+</ul>
+
+<h2 id="Example1-RunningtheExample">Running the Example</h2>
+<p>This example can be executed from the <strong>examples/example1</strong> directory.   There are two out-of-the-box methods for running this example</p>
+
+<ul>
+  <li><strong>example1.sh</strong> - A UNIX/Linux shell script</li>
+  <li><strong>example1.bat</strong> - A Windows Batch file</li>
+</ul>
+
+<h2 id="Example1-TheCode">The Code</h2>
+<p>The code for this example resides in the package <strong>org.quartz.examples.example1</strong>.</p>
+
+<p>The code in this example is made up of the following classes:</p>
+
+<table>
+<thead>
+<tr>
+<th> Class Name </th>
+<th> Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td> SimpleExample </td>
+<td> The main program</td>
+
+</tr>
+<tr>
+<td> HelloJob </td>
+<td> A simple job that says Hello World</td>
+</tr>
+</tbody></table>
+
+<h3 id="Example1-HelloJob">HelloJob</h3>
+<p>HelloJob is a simple job that implements the <em>Job</em> interface and logs a nice message to the log (by default, this will simply go to the screen).   The current date and time is printed in the job so that you can see exactly when the job is run.</p>
+
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">public void execute(JobExecutionContext context) throws JobExecutionException {
+    // Say Hello to the World and display the date/time
+    _log.info("Hello World! - " + new Date());
+}
+</code></pre>
+
+<h3 id="Example1-SimpleExample">SimpleExample</h3>
+<p>The program starts by getting an instance of the Scheduler.  This is done by creating a <em>StdSchedulerFactory</em> and then using it to create a scheduler.   This will create a simple, RAM-based scheduler.</p>
+
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">SchedulerFactory sf = new StdSchedulerFactory();
+Scheduler sched = sf.getScheduler();
+</code></pre>
+
+<p>The HelloJob is defined as a Job to Quartz using the <em>JobDetail</em> class:</p>
+
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">// define the job and tie it to our HelloJob class
+JobDetail job = newJob(HelloJob.class)
+    .withIdentity("job1", "group1")
+    .build();
+</code></pre>
+
+<p>We create a <em>SimpleTrigger</em> that will fire off at the next round minute:</p>
+
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">// compute a time that is on the next round minute
+Date runTime = evenMinuteDate(new Date());
+
+// Trigger the job to run on the next round minute
+Trigger trigger = newTrigger()
+    .withIdentity("trigger1", "group1")
+    .startAt(runTime)
+    .build();
+</code></pre>
+
+<p>We now will associate the Job to the Trigger in the scheduler:</p>
+
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">// Tell quartz to schedule the job using our trigger
+sched.scheduleJob(job, trigger);
+</code></pre>
+
+<p>At this point, the job has been schedule to run when its trigger fires.  However, the scheduler is not yet running.   So, we must tell the scheduler to start up!</p>
+
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">sched.start();
+</code></pre>
+
+<p>To let the program have an opportunity to run the job, we then sleep for 90 seconds.  The scheduler is running in the background and should fire off the job during those 90 seconds.</p>
+
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">Thread.sleep(90L * 1000L);
+</code></pre>
+
+<p>Finally, we will gracefully shutdown the scheduler:</p>
+
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">sched.shutdown(true);
+</code></pre>
+
+<p>Note:  passing <em>true</em> into the <em>shutdown</em> message tells the Quartz Scheduler to wait until all jobs have completed running before returning from the method call.</p>
+
+      </article>
+    </div>
+
+  </div>
+
+</div>
+
+      </div>
+    </div>
+
+    <br/>
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Related Projects:<br/>
+        <a href="http://www.terracotta.org"><img src="/images/Terracotta_Logo_sm.png" style="max-height: 20px;"></a><br/>
+        <a href="http://www.ehcache.org"><img src="/images/ehcache.png" style="max-height: 44px;"></a>
+
+        <!--
+        <ul class="contact-list">
+          <li>Quartz Enterprise Job Scheduler</li>
+          <li><a href="mailto:tc-oss@softwareag.com">tc-oss@softwareag.com</a></li>
+        </ul>
+      -->
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/quartz-scheduler">
+              <i class="fa fa-github"></i> GitHub
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/terracottatech">
+              <i class="fa fa-twitter"></i> Twitter
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.facebook.com/Terracotta">
+              <i class="fa fa-facebook"></i> Facebook
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="http://www.linkedin.com/company/terracotta">
+              <i class="fa fa-linkedin"></i> LinkedIn
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+    <div class="footer-col  footer-col-3">
+      <a href="/downloads/"><i class="fa fa-download"></i> Download Now</a>
+      <br/>
+      <a href="/documentation/"><i class="fa fa-book"></i> Documentation</a>
+      <br/>
+      <a href="/community/"><i class="fa fa-users"></i> Join the Community</a>
+    </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <hr/>
+        <a class="SAG-Logo" href="http://www.softwareag.com/corporate/products/terracotta"><img src="/images/SAG_Logo.png" style="height:1.5em;width:9em;"/></a>
+        <div class="footer-text">
+          <em class="copyleft">Quartz Job Scheduler is Open Source and freely available under the Apache 2 License</em>
+          <br/>
+          <em class="copyright">&copy; Terracotta, Inc., a wholly-owned subsidiary of Software AG USA, Inc. All rights reserved.</em>
+        </div>
+    </div>
+  </div>
+
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+
+<!--  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"/> -->
+
+<script type="text/javascript">
+        $('#').addClass("active");
+        $('#site_mnu_docs_examples').addClass("active");
+</script>
+
+
+  </body>
+
+</html>
