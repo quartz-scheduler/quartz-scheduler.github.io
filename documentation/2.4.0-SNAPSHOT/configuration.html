@@ -858,7 +858,7 @@ registry is created, it will be bound to port number in the given 'org.quartz.sc
 <p><code>org.quartz.scheduler.rmi.serverPort</code></p>
 </div>
 <div class="paragraph">
-<p>The port on which the the Quartz Scheduler service will bind and listen for connections. By default, the RMI service
+<p>The port on which the Quartz Scheduler service will bind and listen for connections. By default, the RMI service
 will 'randomly' select a port as the scheduler is bound to the RMI Registry.</p>
 </div>
 <div class="paragraph">
@@ -918,7 +918,7 @@ It does not make sense to specify a 'true' value for both 'org.quartz.scheduler.
 <p><code>org.quartz.jobStore.misfireThreshold</code></p>
 </div>
 <div class="paragraph">
-<p>The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
+<p>The number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
 </div>
 </div>
 </div>
@@ -1134,7 +1134,7 @@ It does not make sense to specify a 'true' value for both 'org.quartz.scheduler.
 <p><code>org.quartz.jobStore.misfireThreshold</code></p>
 </div>
 <div class="paragraph">
-<p>The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
+<p>The number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
 </div>
 <div class="paragraph">
 <p><code>org.quartz.jobStore.isClustered</code></p>
@@ -1198,8 +1198,8 @@ It does not make sense to specify a 'true' value for both 'org.quartz.scheduler.
 <div class="listingblock">
 <div class="content">
 <pre>org.quartz.jobStore.lockHandler.class = org.quartz.impl.jdbcjobstore.StdRowLockSemaphore
-org.quartz.jobStore.lockHandler.maxRetry = 7     # Default is 3
-org.quartz.jobStore.lockHandler.maxRetry = 3000  # Default is 1000 millis</pre>
+org.quartz.jobStore.lockHandler.maxRetry = 7        # Default is 3
+org.quartz.jobStore.lockHandler.retryPeriod = 3000  # Default is 1000 millis</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1459,7 +1459,7 @@ org.quartz.jobStore.lockHandler.maxRetry = 3000  # Default is 1000 millis</pre>
 <p><code>org.quartz.jobStore.misfireThreshold</code></p>
 </div>
 <div class="paragraph">
-<p>The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
+<p>The number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
 </div>
 <div class="paragraph">
 <p><code>org.quartz.jobStore.isClustered</code></p>
@@ -2011,7 +2011,7 @@ cluster-wide lock, a pattern that degrades performance as you add more clients.<
 <p><code>org.quartz.jobStore.misfireThreshold</code></p>
 </div>
 <div class="paragraph">
-<p>The the number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
+<p>The number of milliseconds the scheduler will 'tolerate' a trigger to pass its next-fire-time by, before being considered "misfired".  The default value (if you don&#8217;t make an entry of this property in your configuration) is 60000 (60 seconds).</p>
 </div>
 </div>
 </div>
