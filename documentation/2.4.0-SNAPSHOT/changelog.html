@@ -178,7 +178,39 @@
 <p>This release is still work in progress under <code>master</code> branch!</p>
 </div>
 <div class="paragraph">
-<p>THIS RELEASE REQUIRES JDK8</p>
+<p>Most Significant Changes This Release:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Quartz 2.4.0 now requires minimum Java version of Java 8</p>
+</li>
+<li>
+<p>Quartz build system moved to Gradle</p>
+</li>
+<li>
+<p>3rd party libraries (slf4j, log4j, Hikari) upgraded to more recent versions</p>
+</li>
+<li>
+<p>Maven POMs generated from gradle declare 3rd party dependencies as "runtime" scope</p>
+</li>
+<li>
+<p>Removal of old TerracottaJobStore</p>
+</li>
+<li>
+<p>"NativeJob" class removed from "quartz-jobs" artifact.  This resolves security concerns
+related to code execution.  While it is possible to safely use this Job class, it is
+a risk for users that don&#8217;t engage some thought.   If you wish to still use this job
+or something like it, the source code for it can now be found as "example15".</p>
+</li>
+<li>
+<p>Example programs can now simply be executed via gradle. See the "exmaples_guide.txt"
+file in the examples folder of the quartz repository for full description and info.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All changes/updates:</p>
 </div>
 <div class="ulist">
 <ul>
