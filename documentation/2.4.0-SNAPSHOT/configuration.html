@@ -96,9 +96,9 @@
                 <li class="dropdown-header">We Love Contributors</li>
                 <li><a href="/community/"><i class="fa fa-code"></i> Contributing</a></li>
                 <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Forums</li>
-                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
-                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler-dev" target="_blank"><i class="fa fa-commenting"></i> Developers' Forum</a></li>
+                <li class="dropdown-header">Discussion Forum</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz/discussions" target="_blank"><i class="fa fa-commenting"></i> Users - post Q&A topic</a></li>
+                <li><a href="https://github.com/quartz-scheduler/quartz/discussions" target="_blank"><i class="fa fa-commenting"></i> Developers - post Idea of General topic</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Source Code</li>
                 <li><a href="https://github.com/quartz-scheduler/quartz"><i class="fa fa-code-fork"></i> GitHub</a></li>
@@ -369,7 +369,7 @@ cluster. You may use the value "AUTO" as the instanceId if you wish the Id to be
 <div class="paragraph">
 <p>Only used if <strong>org.quartz.scheduler.instanceId</strong> is set to "AUTO". Defaults to
 "org.quartz.simpl.SimpleInstanceIdGenerator", which generates an instance id based upon host name and time stamp.
-Other IntanceIdGenerator implementations include SystemPropertyInstanceIdGenerator (which gets the instance id
+Other InstanceIdGenerator implementations include SystemPropertyInstanceIdGenerator (which gets the instance id
 from the system property "org.quartz.scheduler.instanceId", and HostnameInstanceIdGenerator which uses the
 local host name (InetAddress.getLocalHost().getHostName()).  You can also implement the InstanceIdGenerator
 interface your self.</p>
@@ -428,7 +428,7 @@ ClassLoadHelper implementation can be found in the <strong>org.quartz.simpl</str
 <p><code>org.quartz.scheduler.jobFactory.class</code></p>
 </div>
 <div class="paragraph">
-<p>The class name of the JobFactory to use. A JobFatcory is responsible for producing instances of JobClasses.
+<p>The class name of the JobFactory to use. A JobFactory is responsible for producing instances of JobClasses.
 The default is 'org.quartz.simpl.PropertySettingJobFactory', which simply calls newInstance() on the class to produce
 a new instance each time execution is about to occur. PropertySettingJobFactory also reflectively
 sets the job&#8217;s bean properties using the contents of the SchedulerContext and Job and Trigger JobDataMaps.</p>
@@ -922,7 +922,7 @@ It does not make sense to specify a 'true' value for both 'org.quartz.scheduler.
 <h2 id="configuration-of-jdbc-jobstoretx-store-jobs-and-triggers-in-a-database-via-jdbc">Configuration of JDBC-JobStoreTX (store jobs and triggers in a database via JDBC)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>JDBCJobStore is used to store scheduling information (job, triggers and calendars) within a relational database.  There are actually two seperate JDBCJobStore classes that you can select between, depending on the transactional behaviour you need.</p>
+<p>JDBCJobStore is used to store scheduling information (job, triggers and calendars) within a relational database.  There are actually two separate JDBCJobStore classes that you can select between, depending on the transactional behaviour you need.</p>
 </div>
 <div class="paragraph">
 <p>JobStoreTX manages all transactions itself by calling commit() (or rollback()) on the database connection after every action (such as the addition of a job).  JDBCJobStore is appropriate if you are using Quartz in a stand-alone application, or within a servlet container if the application is not using JTA transactions.</p>

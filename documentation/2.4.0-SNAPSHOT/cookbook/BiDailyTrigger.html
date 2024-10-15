@@ -96,9 +96,9 @@
                 <li class="dropdown-header">We Love Contributors</li>
                 <li><a href="/community/"><i class="fa fa-code"></i> Contributing</a></li>
                 <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Forums</li>
-                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler" target="_blank"><i class="fa fa-commenting"></i> Users' Forum</a></li>
-                <li><a href="https://groups.google.com/forum/#!forum/quartz-scheduler-dev" target="_blank"><i class="fa fa-commenting"></i> Developers' Forum</a></li>
+                <li class="dropdown-header">Discussion Forum</li>
+                <li><a href="https://github.com/quartz-scheduler/quartz/discussions" target="_blank"><i class="fa fa-commenting"></i> Users - post Q&A topic</a></li>
+                <li><a href="https://github.com/quartz-scheduler/quartz/discussions" target="_blank"><i class="fa fa-commenting"></i> Developers - post Idea of General topic</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Source Code</li>
                 <li><a href="https://github.com/quartz-scheduler/quartz"><i class="fa fa-code-fork"></i> GitHub</a></li>
@@ -166,7 +166,7 @@
 
 <h1 id="how-to:-trigger-that-executes-every-2-days">How-To: Trigger That Executes Every 2 Days</h1>
 
-<p>At first glance, you may be tempted to use a CronTrigger. However, if this is truly to be every two days, CronTrigger won’t work. To illustrate this, simply think of how many days are in a typical month (28-31). A cron expression like “0 0 5 2/2 * ?” would give us a trigger that would restart its count at the beginning of every month. This means that we would would get subsequent firings on July 30 and August 2, which is an interval of three days, not two.</p>
+<p>At first glance, you may be tempted to use a CronTrigger. However, if this is truly to be every two days, CronTrigger won’t work. To illustrate this, simply think of how many days are in a typical month (28-31). A cron expression like “0 0 5 2/2 * ?” would give us a trigger that would restart its count at the beginning of every month. This means that we would get subsequent firings on July 30 and August 2, which is an interval of three days, not two.</p>
 
 <p>Likewise, an expression like “0 0 5 1/2 * ?” would end up firing on July 31 and August 1, just one day apart.</p>
 
