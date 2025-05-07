@@ -1171,7 +1171,10 @@ It does not make sense to specify a 'true' value for both 'org.quartz.scheduler.
 <p><code>org.quartz.jobStore.acquireTriggersWithinLock</code></p>
 </div>
 <div class="paragraph">
-<p>Whether or not the acquisition of next triggers to fire should occur within an explicit database lock.  This was once necessary (in previous versions of Quartz) to avoid dead-locks with particular databases, but is no longer considered necessary, hence the default value is "false".</p>
+<p>Whether or not the acquisition of next triggers to fire should occur within an explicit database lock.  This was once necessary (in previous versions of Quartz) to avoid dead-locks with particular databases, but is no longer considered necessary in most situations, hence the default value is "false".</p>
+</div>
+<div class="paragraph">
+<p>If using JobStoreCMT (container managed / JTA transactions), this setting is likely needed to be "true" in order to avoid delays in firing newly scheduled triggers.</p>
 </div>
 <div class="paragraph">
 <p>If "org.quartz.scheduler.batchTriggerAcquisitionMaxCount" is set to &gt; 1, and JDBC JobStore is used, then this property must be set to "true" to avoid data corruption (as of Quartz 2.1.1 "true" is now the default if batchTriggerAcquisitionMaxCount is set &gt; 1).</p>
@@ -1964,35 +1967,7 @@ org.quartz.dataSource.myDS.validationQuery=select 0 from dual</pre>
       -->
       </div>
 
-      <div class="footer-col  footer-col-2">
-        <ul class="social-media-list">
-          
-          <li>
-            <a href="https://twitter.com/terracottatech">
-              <i class="fa fa-twitter"></i> Twitter
-            </a>
-          </li>
-          
-
-          
-          <li>
-            <a href="http://www.facebook.com/Terracotta">
-              <i class="fa fa-facebook"></i> Facebook
-            </a>
-          </li>
-          
-
-          
-          <li>
-            <a href="http://www.linkedin.com/company/terracotta">
-              <i class="fa fa-linkedin"></i> LinkedIn
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-
-    <div class="footer-col  footer-col-3">
+    <div class="footer-col  footer-col-2">
       
       <li>
         <a href="https://github.com/quartz-scheduler"><i class="fa fa-github"></i> GitHub</a>
