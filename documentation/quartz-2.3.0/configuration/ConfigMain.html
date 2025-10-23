@@ -139,12 +139,8 @@
         <ul class="nav">
           <li id="site_mnu_docs_home" class="submenu"><a href="/documentation/">Documentation Home</a></li>
 
-          
-
-          
+          <li id="site_mnu_docs_24x-stable" class="submenu"><a href="/documentation/quartz-2.4.x">Quartz 2.4.x</a></li>
           <li id="site_mnu_docs_23x-stable" class="submenu"><a href="/documentation/quartz-2.3.0">Quartz 2.3.x</a></li>
-
-
           <li id="site_mnu_docs_2.2.2" class="submenu"><a href="/documentation/quartz-2.2.2">Quartz 2.2.2</a></li>
           <li id="site_mnu_docs_2.1.7" class="submenu"><a href="/documentation/quartz-2.1.7">Quartz 2.1.7</a></li>
           <li id="site_mnu_docs_2.0.2" class="submenu"><a href="/documentation/quartz-2.0.2">Quartz 2.0.2</a></li>
@@ -352,7 +348,7 @@ scheduler’s name (“org.quartz.scheduler.instanceName”) plus an the appende
 </p>
 
 <p>A boolean value (‘true’ or ‘false’) that specifies whether the main thread of the scheduler should be a daemon thread or
-not. See also the <em>org.quartz.scheduler.makeSchedulerThreadDaemon</em> property for tuning the <a href="ConfigThreadPool.html" title="ConfigThreadPool">SimpleThreadPool</a> if that is the thread pool implementation
+not. See also the <em>org.quartz.threadPool.makeThreadsDaemons</em> property for tuning the <a href="ConfigThreadPool.html" title="ConfigThreadPool">ThreadPool</a> if SimpleThreadPool is the thread pool implementation
 you are using (which is most likely the case).</p>
 
 <p>
@@ -454,7 +450,7 @@ must be set to “true” to avoid data corruption.</p>
    <strong>org.quartz.scheduler.batchTriggerAcquisitionFireAheadTimeWindow</strong>
 </p>
 
-<p>The amount of time in milliseconds that a trigger is allowed to be acquired and fired ahead of its scheduled fire time. <br />
+<p>The amount of time in milliseconds that a trigger is allowed to be acquired and fired ahead of its scheduled fire time.
 Defaults to 0.  The larger the number, the more likely batch acquisition of triggers to fire will be able to select
 and fire more than 1 trigger at a time - at the cost of trigger schedule not being honored precisely (triggers may
 fire this amount early).  This may be useful (for performance’s sake) in situations where the scheduler has very large
