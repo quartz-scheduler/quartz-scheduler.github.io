@@ -427,43 +427,61 @@ org.quartz.dataSource.myDS.maxConnections = 30
 <td>0</td>
 </tr>
 
+</tbody></table>
 
-**org.quartz.dataSource.NAME.provider**
+<p>
+   <strong>org.quartz.dataSource.NAME.provider</strong>
+</p>
 
-Must be "hikaricp" to select usage of HikariCP rather than c3p0.
+<p>Must be “hikaricp” to select usage of HikariCP rather than c3p0.</p>
 
-**org.quartz.dataSource.NAME.driver**
+<p>
+   <strong>org.quartz.dataSource.NAME.driver</strong>
+</p>
 
-Must be the java class name of the JDBC driver for your database.
+<p>Must be the java class name of the JDBC driver for your database.</p>
 
-**org.quartz.dataSource.NAME.URL**
+<p>
+   <strong>org.quartz.dataSource.NAME.URL</strong>
+</p>
 
-The connection URL (host, port, etc.) for connection to your database.
+<p>The connection URL (host, port, etc.) for connection to your database.</p>
 
-**org.quartz.dataSource.NAME.user**
+<p>
+   <strong>org.quartz.dataSource.NAME.user</strong>
+</p>
 
-The user name to use when connecting to your database.
+<p>The user name to use when connecting to your database.</p>
 
-**org.quartz.dataSource.NAME.password**
+<p>
+   <strong>org.quartz.dataSource.NAME.password</strong>
+</p>
 
-The password to use when connecting to your database.
+<p>The password to use when connecting to your database.</p>
 
-**org.quartz.dataSource.NAME.maximumPoolSize**
+<p>
+   <strong>org.quartz.dataSource.NAME.maximumPoolSize</strong>
+</p>
 
-The maximum number of connections that the DataSource can create in it's pool of connections.
+<p>The maximum number of connections that the DataSource can create in it’s pool of connections.</p>
 
-**org.quartz.dataSource.NAME.connectionTestQuery**
+<p>
+   <strong>org.quartz.dataSource.NAME.connectionTestQuery</strong>
+</p>
 
-Is an optional SQL query string that the DataSource can use to detect and replace failed/corrupt connections.
-For example "select 1", or an oracle user might choose "select table_name from user_tables" - which is a  query that should never
-fail - unless the connection is actually bad.
+<p>Is an optional SQL query string that the DataSource can use to detect and replace failed/corrupt connections.
+For example “select 1”, or an oracle user might choose “select table_name from user_tables” - which is a  query that should never
+fail - unless the connection is actually bad.</p>
 
-**org.quartz.dataSource.NAME.idleTimeout**
+<p>
+   <strong>org.quartz.dataSource.NAME.idleTimeout</strong>
+</p>
 
-Discard connections after they have been idle this many seconds.  0 disables the feature. Default is 0.
+<p>Discard connections after they have been idle this many seconds.  0 disables the feature. Default is 0.</p>
 
-
-**Example of a Quartz-defined DataSource with HikariCP**
+<p>
+   <strong>Example of a Quartz-defined DataSource with HikariCP</strong>
+</p>
 
 <pre>
 org.quartz.dataSource.myDS.driver = hikaricp
@@ -476,7 +494,7 @@ org.quartz.dataSource.myDS.connectionTestQuery = SELECT 1
 org.quartz.dataSource.myDS.idleTimeout = 0
 </pre>
 
-### References to Application Server DataSources are defined with the following properties:
+<h3 id="references-to-application-server-datasources-are-defined-with-the-following-properties">References to Application Server DataSources are defined with the following properties:</h3>
 
 <table><thead>
 <tr>
@@ -523,29 +541,39 @@ org.quartz.dataSource.myDS.idleTimeout = 0
 
 </tbody></table>
 
+<p>
+   <strong>org.quartz.dataSource.NAME.jndiURL</strong>
+</p>
 
-**org.quartz.dataSource.NAME.jndiURL**
+<p>The JNDI URL for a DataSource that is managed by your application server.</p>
 
-The JNDI URL for a DataSource that is managed by your application server.
+<p>
+   <strong>org.quartz.dataSource.NAME.java.naming.factory.initial</strong>
+</p>
 
-**org.quartz.dataSource.NAME.java.naming.factory.initial**
+<p>The (optional) class name of the  JNDI InitialContextFactory that you wish to use.</p>
 
-The (optional) class name of the  JNDI InitialContextFactory that you wish to use.
+<p>
+   <strong>org.quartz.dataSource.NAME.java.naming.provider.url</strong>
+</p>
 
-**org.quartz.dataSource.NAME.java.naming.provider.url**
+<p>The (optional) URL for connecting to the JNDI context.</p>
 
+<p>
+   <strong>org.quartz.dataSource.NAME.java.naming.security.principal</strong>
+</p>
 
-The (optional) URL for connecting to the JNDI context.
+<p>The (optional) user principal for connecting to the JNDI context.</p>
 
-**org.quartz.dataSource.NAME.java.naming.security.principal**
+<p>
+   <strong>org.quartz.dataSource.NAME.java.naming.security.credentials</strong>
+</p>
 
-The (optional) user principal for connecting to the JNDI context.
+<p>The (optional) user credentials for connecting to the JNDI context.</p>
 
-**org.quartz.dataSource.NAME.java.naming.security.credentials**
-
-The (optional) user credentials for connecting to the JNDI context.
-
-**Example of a Datasource referenced from an Application Server**
+<p>
+   <strong>Example of a Datasource referenced from an Application Server</strong>
+</p>
 
 <pre>
 org.quartz.dataSource.myOtherDS.jndiURL=jdbc/myDataSource
@@ -555,12 +583,7 @@ org.quartz.dataSource.myOtherDS.java.naming.provider.url=ormi:<span class="code-
 org.quartz.dataSource.myOtherDS.java.naming.security.credentials=123
 </pre>
 
-
-
-
-
-### Custom ConnectionProvider Implementations {#ConfigDataSources-CustomConnectionProviderImplementations}
-
+<h3 id="ConfigDataSources-CustomConnectionProviderImplementations">Custom ConnectionProvider Implementations</h3>
 
 <table><thead>
 <tr>
@@ -581,18 +604,21 @@ org.quartz.dataSource.myOtherDS.java.naming.security.credentials=123
 </tr>
 </tbody></table>
 
-**org.quartz.dataSource.NAME.connectionProvider.class**
+<p>
+   <strong>org.quartz.dataSource.NAME.connectionProvider.class</strong>
+</p>
 
-The class name of the ConnectionProvider to use.  After instantiating the class, Quartz can automatically set configuration properties on the instance, bean-style.
+<p>The class name of the ConnectionProvider to use.  After instantiating the class, Quartz can automatically set configuration properties on the instance, bean-style.</p>
 
-**Example of Using a Custom ConnectionProvider Implementation**
+<p>
+   <strong>Example of Using a Custom ConnectionProvider Implementation</strong>
+</p>
 
 <pre>
 org.quartz.dataSource.myCustomDS.connectionProvider.class = com.foo.FooConnectionProvider
 org.quartz.dataSource.myCustomDS.someStringProperty = someValue
 org.quartz.dataSource.myCustomDS.someIntProperty = 5
 </pre>
-</tbody></table>
 
       </article>
     </div>
