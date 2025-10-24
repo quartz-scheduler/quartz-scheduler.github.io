@@ -10,11 +10,11 @@
   <link rel="shortcut icon"  type="image/x-icon" href="/images/favicon.ico">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
-  <title>quartz-doc-index</title>
+  <title>Quartz Enterprise Job Scheduler</title>
 
   <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
 
-  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/quartz-2.5.x/">
+  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/quartz-2.5.x/introduction.html">
   <link rel="alternate" type="application/rss+xml" title="Quartz Enterprise Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
 
 
@@ -125,7 +125,7 @@
 
     <div class="container-fluid">
       <div id="contentTitle">
-        <h1>quartz-doc-index</h1>
+        <h1></h1>
       </div>
       <div>
         <br/>
@@ -153,31 +153,196 @@
     <div class="col-xs-12 col-sm-9">
       <header class="post-header">
         
-        <h1 class="post-title">Quartz Documentation </h1>
+        <h1 class="post-title"></h1>
         <hr/>
         
       </header>
       <article class="post-content">
-        <h1 id="quartz-2.5.x-documentation">Quartz 2.5.x Documentation</h1>
-
+        <div class="sect1">
+<h2 id="quartz-enterprise-job-scheduler">Quartz Enterprise Job Scheduler</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="what-is-the-quartz-job-scheduling-library">What is the Quartz Job Scheduling Library?</h3>
+<div class="paragraph">
+<p>Quartz is a richly featured, open source job scheduling library that can be integrated within virtually any Java application - from the smallest stand-alone application to the largest e-commerce system. Quartz can be used to create simple or complex schedules for executing tens, hundreds, or even tens-of-thousands of jobs; jobs whose tasks are defined as standard Java components that may execute virtually anything you may program them to do. The Quartz Scheduler includes many enterprise-class features, such as support for JTA transactions and clustering.</p>
+</div>
+<div class="paragraph">
+<p>Quartz is freely usable, licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 license</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="what-can-quartz-do-for-you">What Can Quartz Do For You?</h3>
+<div class="paragraph">
+<p>If your application has tasks that need to occur at given moments in time, or if your system has recurring maintenance jobs then Quartz may be your ideal solution.</p>
+</div>
+<div class="paragraph">
+<p>Sample uses of job scheduling with Quartz:</p>
+</div>
+<div class="ulist">
 <ul>
-  <li>
-    <p><a href="/api/2.5.x/index.html">JavaDoc</a></p>
-  </li>
-  <li><a href="introduction.html">Introduction to Quartz</a></li>
-  <li></li>
-  <li><a href="quick-start.html">Quick Start Guide</a></li>
-  <li><a href="configuration/">Configuration</a></li>
-  <li></li>
-  <li><a href="cookbook/">Cookbook</a></li>
-  <li><a href="tutorials/">Tutorials</a></li>
-  <li>
-    <p><a href="examples/">Examples</a></p>
-  </li>
-  <li><a href="best-practices.html">Best Practices</a></li>
-  <li><a href="faq.html">FAQ</a></li>
+<li>
+<p>Driving Process Workflow: As a new order is initially placed, schedule a Job to fire in exactly 2 hours, that will check the status of that order, and trigger a warning notification if an order confirmation message has not yet been received for the order, as well as changing the order&#8217;s status to 'awaiting intervention'.</p>
+</li>
+<li>
+<p>System Maintenance: Schedule a job to dump the contents of a database into an XML file every business day (all weekdays except holidays) at 11:30 PM.</p>
+</li>
+<li>
+<p>Providing reminder services within an application.</p>
+</li>
 </ul>
-
+</div>
+</div>
+<div class="sect2">
+<h3 id="features">Features</h3>
+<div class="sect3">
+<h4 id="runtime-environments">Runtime Environments</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Quartz can run embedded within another free standing application</p>
+</li>
+<li>
+<p>Quartz can be instantiated within an application server (or servlet container), and participate in XA transactions</p>
+</li>
+<li>
+<p>Quartz can run as a stand-alone program (within its own Java Virtual Machine), to be used via RMI</p>
+</li>
+<li>
+<p>Quartz can be instantiated as a cluster of stand-alone programs (with load-balance and fail-over capabilities) for the execution of jobs</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="job-scheduling">Job Scheduling</h4>
+<div class="paragraph">
+<p>Jobs are scheduled to run when a given Trigger occurs. Triggers can be created with nearly any combination of
+the following directives:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>at a certain time of day (to the millisecond)</p>
+</li>
+<li>
+<p>on certain days of the week</p>
+</li>
+<li>
+<p>on certain days of the month</p>
+</li>
+<li>
+<p>on certain days of the year</p>
+</li>
+<li>
+<p>not on certain days listed within a registered Calendar (such as business holidays)</p>
+</li>
+<li>
+<p>repeated a specific number of times</p>
+</li>
+<li>
+<p>repeated until a specific time/date</p>
+</li>
+<li>
+<p>repeated indefinitely</p>
+</li>
+<li>
+<p>repeated with a delay interval</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Jobs are given names by their creator and can also be organized into named groups. Triggers may also be given
+names and placed into groups, in order to easily organize them within the scheduler. Jobs can be added to the
+scheduler once, but registered with multiple Triggers. Within an enterprise Java environment, Jobs can perform their work
+as part of a distributed (XA) transaction.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="job-execution">Job Execution</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Jobs can be any Java class that implements the simple Job interface, leaving infinite possibilities for the work your Jobs can perform.</p>
+</li>
+<li>
+<p>Job class instances can be instantiated by Quartz, or by your application&#8217;s framework.</p>
+</li>
+<li>
+<p>When a Trigger occurs, the scheduler notifies zero or more Java objects implementing the JobListener and TriggerListener interfaces (listeners can be simple Java objects, or EJBs, or JMS publishers, etc.). These listeners are also notified after the Job has executed.</p>
+</li>
+<li>
+<p>As Jobs are completed, they return a JobCompletionCode which informs the scheduler of success or failure. The JobCompletionCode can also instruct the scheduler of any actions it should take based on the success/fail code - such as immediate re-execution of the Job.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="job-persistence">Job Persistence</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The design of Quartz includes a JobStore interface that can be implemented to provide various mechanisms for the storage of jobs.</p>
+</li>
+<li>
+<p>With the use of the included JDBCJobStore, all Jobs and Triggers configured as "non-volatile" are stored in a relational database via JDBC.</p>
+</li>
+<li>
+<p>With the use of the included RAMJobStore, all Jobs and Triggers are stored in RAM and therefore do not persist between program executions - but this has the advantage of not requiring an external database.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="transactions">Transactions</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Quartz can participate in JTA transactions, via the use of JobStoreCMT (a subclass of JDBCJobStore).</p>
+</li>
+<li>
+<p>Quartz can manage JTA transactions (begin and commit them) around the execution of a Job, so that the work performed by the Job automatically happens within a JTA transaction.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clustering">Clustering</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Fail-over.</p>
+</li>
+<li>
+<p>Load balancing.</p>
+</li>
+<li>
+<p>Quartz&#8217;s built-in clustering features rely upon database persistence via JDBCJobStore (described above).</p>
+</li>
+<li>
+<p>Terracotta extensions to Quartz provide clustering capabilities without the need for a backing database.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listeners-plug-ins">Listeners &amp; Plug-Ins</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Applications can catch scheduling events to monitor or control job/trigger behavior by implementing one or more listener interfaces.</p>
+</li>
+<li>
+<p>The Plug-In mechanism can be used add functionality to Quartz, such keeping a history of job executions, or loading job and trigger definitions from a file.</p>
+</li>
+<li>
+<p>Quartz ships with a number of "factory built" plug-ins and listeners.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
       </article>
     </div>
 
@@ -244,7 +409,7 @@
 
 <script type="text/javascript">
         $('#').addClass("active");
-        $('#site_mnu_quartz_doc_index').addClass("active");
+        $('#').addClass("active");
 </script>
 
 

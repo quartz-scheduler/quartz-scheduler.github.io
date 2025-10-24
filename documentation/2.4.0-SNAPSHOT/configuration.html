@@ -993,6 +993,13 @@ It does not make sense to specify a 'true' value for both 'org.quartz.scheduler.
 </tr>
 
 <tr>
+<td>org.quartz.jobStore.useEnhancedStatements</td>
+<td>no</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+
+<tr>
 <td>org.quartz.jobStore.clusterCheckinInterval</td>
 <td>no</td>
 <td>long</td>
@@ -1133,6 +1140,70 @@ It does not make sense to specify a 'true' value for both 'org.quartz.scheduler.
 </div>
 <div class="paragraph">
 <p>Set to "true" in order to turn on clustering features. This property must be set to "true" if you are having multiple instances of Quartz use the same set of database tables&#8230;&#8203; otherwise you will experience havoc.  See the configuration docs for clustering for more information.</p>
+</div>
+<div id="enhanced_statements_property" class="paragraph">
+<p><code>org.quartz.jobStore.useEnhancedStatements</code></p>
+</div>
+<div class="paragraph">
+<p>Set to <code>true</code> in order to use the enhanced SQL statements that are available in the database.  This is a performance optimization, and is not required for Quartz to work.
+This property enables the use of bulk loader SQL statements for certain operations, such as for loading job details and trigger details.
+These enhanced SQL statements can greatly improve performance when there are large numbers of jobs and triggers defined in the job store. This setting is most useful for
+when you need to query the job store frequently to find triggers and jobs, such as for a job runner dashboard.<br>
+These statements are used for the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>JobStore#getTriggersByJobGroup</code></p>
+</li>
+<li>
+<p><code>JobStore#getTriggersByTriggerGroup</code></p>
+</li>
+<li>
+<p><code>JobStore#getTriggersByJobAndTriggerGroup</code></p>
+</li>
+<li>
+<p>(<em>enabled-only if setting is</em> <code>true</code>)<code>JobStore#storeCalendar</code> via <code>StdJDBCDelegate#selectTriggersForCalendar</code></p>
+</li>
+<li>
+<p>(<em>enabled-only if setting is</em> <code>true</code>) <code>StdJDBCDelegate#selectTriggersForJob</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>This is then used in turn by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>JobStore#getTriggersOfJob</code></p>
+</li>
+<li>
+<p><code>JobStore#pauseJob</code></p>
+</li>
+<li>
+<p><code>JobStore#pauseJobs</code></p>
+</li>
+<li>
+<p><code>JobStore#resumeJob</code></p>
+</li>
+<li>
+<p><code>JobStore#resumeJobs</code></p>
+</li>
+<li>
+<p><code>JobStore#removeJob</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Not all these methods are fully optimized for batching inserting/updating yet.<br></p>
+</div>
+<div class="paragraph">
+<p>The default value is <code>false</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>org.quartz.jobStore.clusterCheckinInterval</code></p>
