@@ -14,7 +14,7 @@
 
   <meta name="description" content="A full-featured, Java-based, In-process job scheduler.">
 
-  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/quartz-2.5.x/best-practices.html">
+  <link rel="canonical" href="http://www.quartz-scheduler.org/documentation/quartz-2.4.x/best-practices.html">
   <link rel="alternate" type="application/rss+xml" title="Quartz Enterprise Job Scheduler" href="http://www.quartz-scheduler.org/feed.xml" />
 
 
@@ -161,11 +161,6 @@
         <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#production-system-tips">Production System Tips</a>
-<ul class="sectlevel2">
-<li><a href="#enabling-bulk-job-retrieval-operations">Enabling bulk job retrieval operations</a></li>
-</ul>
-</li>
 <li><a href="#jobdatamap-tips">JobDataMap Tips</a>
 <ul class="sectlevel2">
 <li><a href="#only-store-primitive-data-types-including-strings-in-the-jobdatamap">Only Store Primitive Data Types (including Strings) In the JobDataMap</a></li>
@@ -213,19 +208,6 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Best Practices and Tips</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="production-system-tips">Production System Tips</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="enabling-bulk-job-retrieval-operations">Enabling bulk job retrieval operations</h3>
-<div class="paragraph">
-<p>You can use the new <a href="configuration/ConfigJobStoreTX.html#enhanced_statements_property">bulk retrieval methods</a> (such as <code>Scheduler.getJobKeys(GroupMatcher&lt;JobKey&gt; matcher)</code>) to efficiently
-retrieve large numbers of jobs/triggers at once, rather than calling the single-item retrieval methods (such as
-<code>Scheduler.getJobDetail(JobKey jobKey)</code>) in a loop.</p>
-</div>
 </div>
 </div>
 </div>
